@@ -159,13 +159,13 @@ namespace FlowchartGenerator.AreaHandlers
 		//Размер зоны, геттеры 
 		public float GetWidth() 
 		{
-			if (Size.Left == 99999999 || Size.Right == -99999999 || Size.Top == -99999999 || Size.Bottom == 99999999)
+			if (Size.Left == int.MaxValue || Size.Right == int.MinValue || Size.Top == int.MinValue || Size.Bottom == int.MaxValue)
 				RECalculateAreaSizeForce();
 			return Size.Right - Size.Left + 1;
 		}
         public float GetHeight()
         {
-			if (Size.Left == 99999999 || Size.Right == -99999999 || Size.Top == -99999999 || Size.Bottom == 99999999)
+			if (Size.Left == int.MaxValue || Size.Right == int.MinValue || Size.Top == int.MinValue || Size.Bottom == int.MaxValue)
 				RECalculateAreaSizeForce();
 			return Size.Top - Size.Bottom + 1;
         }
