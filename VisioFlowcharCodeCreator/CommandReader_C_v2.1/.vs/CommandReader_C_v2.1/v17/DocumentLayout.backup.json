@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9958701A-87BF-4775-93B1-B837AC38A324}|CommandReader_C_v2.1.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\visioflowcharcodecreator\\commandreader_c_v2.1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9958701A-87BF-4775-93B1-B837AC38A324}|CommandReader_C_v2.1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9958701A-87BF-4775-93B1-B837AC38A324}|CommandReader_C_v2.1.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\visioflowcharcodecreator\\commandreader_c_v2.1\\commandscanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9958701A-87BF-4775-93B1-B837AC38A324}|CommandReader_C_v2.1.csproj|solutionrelative:commandscanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9958701A-87BF-4775-93B1-B837AC38A324}|CommandReader_C_v2.1.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\visioflowcharcodecreator\\commandreader_c_v2.1\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9958701A-87BF-4775-93B1-B837AC38A324}|CommandReader_C_v2.1.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CommandScanner.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\CommandScanner.cs",
+              "RelativeDocumentMoniker": "CommandScanner.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\CommandScanner.cs",
+              "RelativeToolTip": "CommandScanner.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAwwIgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T17:25:05.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MAIN.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\MAIN.cs",
+              "RelativeDocumentMoniker": "MAIN.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\MAIN.cs",
+              "RelativeToolTip": "MAIN.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T08:28:35.769Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\VisioFlowcharCodeCreator\\CommandReader_C_v2.1\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAANoAAAAAAAAAAAAUwPEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T08:28:22.689Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

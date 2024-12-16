@@ -1,0 +1,29 @@
+10.12.2024 22:41:31 : CommandsReader_I : Construct : Success
+~StartFunc~ void Testcase()
+~SOZ~ {
+~PROCESS~ int test1 = 10;
+~IF~ if(test1)
+~SOZ~ {
+~INPUT~ getchar();
+~PROCESS~ int i = 0;
+~LOOP~ while(true)
+~SOZ~ {
+~INPUT~ getchar();
+~PROCESS~ int x = 0;
+~SUBPROCESS~ calculate();
+~EOZ~ }
+~EOZ~ }
+~ELSE~ else
+~SOZ~ {
+~INPUT~ getchar();
+~SUBPROCESS~ annigilate();
+~EOZ~ }
+~LOOP~ for(int i = 0; i < 10; ++i)
+~SOZ~ {
+~INPUT~ getchar();
+~PROCESS~ int i = 0;
+~EOZ~ }
+~INPUT~ getchar();
+~RETURN~ return;
+~EOZ~ }
+Scan Commands From Text : Success

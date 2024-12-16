@@ -1,0 +1,26 @@
+void Testcase()
+{
+int test1 = 10;
+if(test1)
+{
+getchar();
+int i = 0;
+	while(true)
+	{
+	getchar();
+	int x = 0;
+	calculate();
+	}
+}
+else  
+{
+getchar();
+annigilate();
+}
+for(int i = 0; i < 10; ++i)
+{
+getchar();
+int i = 0;
+}
+getchar();
+}
