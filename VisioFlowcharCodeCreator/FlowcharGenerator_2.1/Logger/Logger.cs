@@ -18,7 +18,7 @@ namespace FlowchartGenerator
         public Logger(string LogObjectName, string LogFolder = null) // Lenovo
         {
 			if (LogFolder == null)
-				LogFolder = "C:\\ProgramData\\FlowchartCreatorAddIn" + @"\FG_LOGS";
+				LogFolder = $@"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)}\FlowchartCreatorAddIn" + @"\FG_LOGS";
 
 			LogFolder = LogFolder + @"\" + LogObjectName + "_LOG.txt";
 			FileStream = new StreamWriter(LogFolder, false);

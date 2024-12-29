@@ -14,13 +14,15 @@ namespace FlowchartGenerator
 	{
 		static bool IsExit = false;
 		FG.MENU.AddInMenuForm ux;
-		string textBufferPath = "C:\\ProgramData\\FlowchartCreatorAddIn" + "\\CommandsLineTextBuffer.txt"; //temp file
-        string cmdXlsxSheetPath = "C:\\ProgramData\\FlowchartCreatorAddIn" + "\\Commands.xlsx"; //temp file
+
+        static string localappdata = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+		string textBufferPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\CommandsLineTextBuffer.txt"; //temp file
+        string cmdXlsxSheetPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\Commands.xlsx"; //temp file
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
 		{
 			Visio.Document ActiveDocument = this.Application.Documents.Add("");
             Visio.Page ActivePage = this.Application.ActivePage;
-			ActiveDocument = this.Application.ActiveDocument;
+			ActiveDocument = this.Application.ActiveDocument;/*
             using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
             {
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
@@ -29,7 +31,7 @@ namespace FlowchartGenerator
                     ExceptionShape("Visio must be running as an administrator", ActivePage);
                     return;
                 }
-            }
+            }*/
 #if !DEBUG
 			try
             {
@@ -48,7 +50,7 @@ namespace FlowchartGenerator
                     FlowchartGenerator.GenerateDiagram(5, 8, textBufferPath);
                 }
                 Logger.ShutDownLogs();
-#if !DebugVersion || !DEBUG
+#if !DebugVersion && !DEBUG
 		}
             catch(Exception ex) 
             {
