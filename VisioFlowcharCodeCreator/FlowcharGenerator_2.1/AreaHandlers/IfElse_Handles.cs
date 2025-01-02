@@ -35,18 +35,22 @@ namespace FlowchartGenerator.AreaHandlers
 			List<int> ElseIfBranches = FindEOZ_And_ElseBranches(ZoneRootIndex, out IsHaveElse, out EOZ);
 			if (ElseIfBranches.Count == 0 && IsHaveElse == -1 && AreaType != CMD.ELSEIF)
 			{
-				OutputNodes.Add(new From_Connection(AreaRoot, ConType.Right));
-				return true;
+				CmdNode ElseDot = Diagram.CreateCmdNode(null, CMD.ELSE, LastNoZoneElseNode.GetLocation() + new Vector2D(1, 0));
+				ElseDot.GetShape().SetCellParameter("Width", "0.01 mm");
+				ElseDot.GetShape().SetCellParameter("Height", "0.01 mm");
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right, "Else"), ElseDot);
+				AreaNodes.Add(ElseDot);
+				OutputNodes.Add(new From_Connection(ElseDot, ConType.Bottom));
 			}
 			else
 			{
-				Handle_ELSEIF_Cases(ElseIfBranches, ref CurNodeLoc, ref LastNoZoneElseNode);
+				Handle_ELSEIF_Cases_IfExist(ElseIfBranches, ref CurNodeLoc, ref LastNoZoneElseNode);
 				Handle_ELSE_Case_ifExist(IsHaveElse, ref CurNodeLoc, ref EOZ, ref LastNoZoneElseNode);
 			}
 			RECalculateAreaSizeForce();
 			return true;
 		}
-        private void Handle_ELSEIF_Cases(List<int> ElseIfBranches, ref Vector2D CurNodeLoc, ref CmdNode LastNoZoneElseNode)
+        private void Handle_ELSEIF_Cases_IfExist(List<int> ElseIfBranches, ref Vector2D CurNodeLoc, ref CmdNode LastNoZoneElseNode)
         {
             foreach (int ElseIfIndex in ElseIfBranches)
             {
@@ -77,12 +81,17 @@ namespace FlowchartGenerator.AreaHandlers
                 ElseHandler.SetZoneLocationByRootLocation(CurNodeLoc + new Vector2D((ElseHandler.GetWidth() / 2), 0));
                 CurNodeLoc.Plus(ElseHandler.GetWidth(), 0); 
                 OutputNodes.AddRange(ElseHandler.OutputNodes);//!!!
-				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right, "Else"), ElseHandler.AreaRoot);
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right), ElseHandler.AreaRoot);
                 return true;
             }
 			else
 			{
-				OutputNodes.Add(new From_Connection(LastNoZoneElseNode, ConType.Right, "Else"));
+				CmdNode ElseDot = Diagram.CreateCmdNode(null, CMD.ELSE, LastNoZoneElseNode.GetLocation() + new Vector2D(0.5f, 0));
+				ElseDot.GetShape().SetCellParameter("Width", "0.01 mm");
+				ElseDot.GetShape().SetCellParameter("Height", "0.01 mm");
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right), ElseDot);
+				AreaNodes.Add(ElseDot);
+				OutputNodes.Add(new From_Connection(ElseDot, ConType.Bottom));
 			}
 
 			return false;

@@ -34,7 +34,7 @@ namespace FlowchartGenerator
 			//SHAPES
 			MShapes.Add(CMD.IF, BasicFlowchartShapes_Stencil.Masters.get_ItemU("Decision"));
 			MShapes.Add(CMD.ELSEIF, BasicFlowchartShapes_Stencil.Masters.get_ItemU("Decision"));
-			MShapes.Add(CMD.ELSE, BasicFlowchartShapes_Stencil.Masters.get_ItemU("Process"));
+			MShapes.Add(CMD.ELSE, BasicShapes_Stencil.Masters.get_ItemU("Circle"));
 			MShapes.Add(CMD.SWITCH, BasicFlowchartShapes_Stencil.Masters.get_ItemU("Decision"));
 
 			MShapes.Add(CMD.LOOP, BasicShapes_Stencil.Masters.get_ItemU("Snip Same Side Corner Rectangle"));

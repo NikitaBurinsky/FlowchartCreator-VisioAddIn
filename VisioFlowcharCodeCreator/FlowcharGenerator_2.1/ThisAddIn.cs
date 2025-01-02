@@ -4,7 +4,6 @@ using Visio = Microsoft.Office.Interop.Visio;
 using System.IO;
 using System.Threading;
 using FG = FlowchartGenerator;
-using System.Security.Principal;
 
 
 namespace FlowchartGenerator
@@ -22,16 +21,7 @@ namespace FlowchartGenerator
 		{
 			Visio.Document ActiveDocument = this.Application.Documents.Add("");
             Visio.Page ActivePage = this.Application.ActivePage;
-			ActiveDocument = this.Application.ActiveDocument;/*
-            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
-            {
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                if(!principal.IsInRole(WindowsBuiltInRole.Administrator))
-                {
-                    ExceptionShape("Visio must be running as an administrator", ActivePage);
-                    return;
-                }
-            }*/
+			ActiveDocument = this.Application.ActiveDocument;
 #if !DEBUG
 			try
             {
@@ -41,7 +31,6 @@ namespace FlowchartGenerator
                     FileStream fs = File.Create(textBufferPath);
                     fs.Dispose();
                 }
-
                 FG_Core FlowchartGenerator = new FG_Core();
                 FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath, cmdXlsxSheetPath);
                 StartMenuForm(FlowchartGenerator, textBufferPath);

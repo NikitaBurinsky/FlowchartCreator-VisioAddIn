@@ -198,18 +198,14 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="..\CommandReader_C_v2.1\CommandScanner.cs">
-      <Link>CommandScanner.cs</Link>
-    </Compile>
-    <Compile Include="..\CommandReader_C_v2.1\CommandsReader_C.cs">
-      <Link>CommandsReader_C.cs</Link>
-    </Compile>
     <Compile Include="AreaHandlers\AreaHadler.cs" />
     <Compile Include="AreaHandlers\BaseLoop_Handler.cs" />
     <Compile Include="AreaHandlers\BaseArea_Handler.cs" />
     <Compile Include="AreaHandlers\SwitchCase_Handler.cs" />
     <Compile Include="AreaHandlers\IfElse_Handles.cs" />
     <Compile Include="BasicTypes.cs" />
+    <Compile Include="CommandsReader\CommandScanner.cs" />
+    <Compile Include="CommandsReader\CommandsReader_C.cs" />
     <Compile Include="SubSystems\CMReader_Implementation.cs" />
     <Compile Include="Shapes\CmdNode.cs" />
     <Compile Include="FG_Core.cs" />
@@ -263,9 +259,7 @@
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommandsReader\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -6,7 +6,7 @@ namespace FlowchartGenerator
 	public class Shape : SubSystem
 	{
 		private static Logger LOG = new Logger("Shape class");
-		public Shape(Vector2D CreateLocation, CMD Type, string Text = null)
+		public Shape(Vector2D CreateLocation, CMD Type, string Text = "")
 		{
 			Visio.Master master = ShapeMaster.GetMasterShapeByCMD(Type);
             if (master == null)
@@ -16,6 +16,7 @@ namespace FlowchartGenerator
             shape = Page.Drop(master, 0, 0);
 			SetLocation(CreateLocation);
 
+			if (Text != null)
 			if (Settings.FigureTextMaxSize > -1)
 			{
 				if (Text.Length > Settings.FigureTextMaxSize)
@@ -53,7 +54,7 @@ namespace FlowchartGenerator
             string FromName = From.FromNode.GetShape().shape.Name;
             string ToName = To.shape.Name;
 			string FromIF_ConStartSide = $" + ('{FromName}'!Width * 0.5)";
-			if (From.FromNode.GetLocation().X > To.GetLocation().X)
+			if (From.FromConnectionType == ConType.Left)
 				FromIF_ConStartSide = $" - ('{FromName}'!Width * 0.5)";
 
 			Con.Cells["LockHeight"].FormulaForce = "FALSE";

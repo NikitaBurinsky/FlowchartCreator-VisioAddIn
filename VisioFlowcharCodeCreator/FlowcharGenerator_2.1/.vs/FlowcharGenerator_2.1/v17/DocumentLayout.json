@@ -1,10 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\GH_Repositories\\Formatis_GH\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\",
+  "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|e:\\gh_repositories\\formatis_gh\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\areahandlers\\ifelse_handles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:areahandlers\\ifelse_handles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\shapes\\shapemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:shapes\\shapemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\shapes\\cmdnode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:shapes\\cmdnode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\shapes\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:shapes\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\diagramfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:diagramfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 219,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +46,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ThisAddIn.cs",
-              "DocumentMoniker": "E:\\GH_Repositories\\Formatis_GH\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ThisAddIn.cs",
-              "RelativeDocumentMoniker": "ThisAddIn.cs",
-              "ToolTip": "E:\\GH_Repositories\\Formatis_GH\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ThisAddIn.cs",
-              "RelativeToolTip": "ThisAddIn.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAlwCwAAAA2AAAA",
+              "DocumentIndex": 2,
+              "Title": "CmdNode.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\Shapes\\CmdNode.cs",
+              "RelativeDocumentMoniker": "Shapes\\CmdNode.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\Shapes\\CmdNode.cs",
+              "RelativeToolTip": "Shapes\\CmdNode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T21:09:54.911Z",
+              "WhenOpened": "2025-01-02T18:51:43.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ShapeMaster.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\Shapes\\ShapeMaster.cs",
+              "RelativeDocumentMoniker": "Shapes\\ShapeMaster.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\Shapes\\ShapeMaster.cs",
+              "RelativeToolTip": "Shapes\\ShapeMaster.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCQAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T18:47:02.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Shape.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\Shapes\\Shape.cs",
+              "RelativeDocumentMoniker": "Shapes\\Shape.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\Shapes\\Shape.cs",
+              "RelativeToolTip": "Shapes\\Shape.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAEwBIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T18:40:08.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IfElse_Handles.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\AreaHandlers\\IfElse_Handles.cs",
+              "RelativeDocumentMoniker": "AreaHandlers\\IfElse_Handles.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\AreaHandlers\\IfElse_Handles.cs",
+              "RelativeToolTip": "AreaHandlers\\IfElse_Handles.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwFgAAABwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T18:34:32.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DiagramField.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\DiagramField.cs",
+              "RelativeDocumentMoniker": "DiagramField.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\DiagramField.cs",
+              "RelativeToolTip": "DiagramField.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAEwGQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-02T18:08:30.974Z",
               "EditorCaption": ""
             }
           ]

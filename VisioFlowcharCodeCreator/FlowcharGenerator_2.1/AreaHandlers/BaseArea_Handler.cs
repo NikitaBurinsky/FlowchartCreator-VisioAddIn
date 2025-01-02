@@ -40,7 +40,7 @@ namespace FlowchartGenerator.AreaHandlers
 						{
 							AreaRoot = areaHandler.AreaRoot;
 						}
-						NextNodeLocation.X += Diagram.FindNextLogicalLocation(areaHandler.OutputNodes).X;
+						NextNodeLocation.X = Diagram.FindNextLogicalLocation(areaHandler.OutputNodes).X;
 						NextNodeLocation.Y -= areaHandler.GetHeight() ;
 						FromConnects = areaHandler.OutputNodes;
 					}
@@ -60,7 +60,6 @@ namespace FlowchartGenerator.AreaHandlers
 						}
 						else
 						{
-							
 							cmdNode = Diagram.CreateCmdNode(Commands[Iter].text, Commands[Iter].type, NextNodeLocation);
 							NextNodeLocation.Y -= 1;
 							Diagram.ConnectCmdShapesBase(FromConnects, cmdNode);
