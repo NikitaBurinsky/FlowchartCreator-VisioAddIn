@@ -11,7 +11,7 @@ namespace FlowchartGenerator
 		private int ID;
 		public List<CmdNode> ConnectedFrom = new List<CmdNode>();
 		public List<CmdNode> ConnectedTo = new List<CmdNode>();
-		public CmdNode(String text, CMD type, Vector2D Location)
+		public CmdNode(String text, CMD type, Vector2D Location, int id)
 		{
 			shape = new FlowchartGenerator.Shape(Location, type, text);
 			Type = type;

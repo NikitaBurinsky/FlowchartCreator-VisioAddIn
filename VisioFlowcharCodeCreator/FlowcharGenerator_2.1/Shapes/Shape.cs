@@ -6,12 +6,9 @@ namespace FlowchartGenerator
 	public class Shape : SubSystem
 	{
 		private static Logger LOG = new Logger("Shape class");
-		private Visio.Shape shape;
-		Vector2D Location;
-		Vector2D VisioCoordinates;
-		public Shape(Vector2D CreateLocation, CMD ShapeType, string Text = "")
+		public Shape(Vector2D CreateLocation, CMD Type, string Text = "")
 		{
-			Visio.Master master = ShapeMaster.GetMasterShapeByCMD(ShapeType);
+			Visio.Master master = ShapeMaster.GetMasterShapeByCMD(Type);
             if (master == null)
             {
 				return;
@@ -99,7 +96,9 @@ namespace FlowchartGenerator
 			shape.Cells[CellName].FormulaForce = Formula;
 		}
 
-
+		private Visio.Shape shape;
+		Vector2D Location;
+		Vector2D VisioCoordinates;
 	}
 
 }

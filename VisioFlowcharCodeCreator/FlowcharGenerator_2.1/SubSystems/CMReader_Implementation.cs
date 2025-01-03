@@ -12,13 +12,12 @@ namespace FlowchartGenerator
         }
         public List<Command> GetCommandsFromFile(string fileName)
         {
-			LOG.Write("Scan Commands From Text : Start");
             List<Command> commands = CMDReader.GetCommandsFromFile(fileName);
             for (int i = 0; i < commands.Count; ++i)
             {
                 LOG.Write($"~{commands[i].type.ToString()}~ {commands[i].text}");
             }
-            LOG.Write($"Scan Commands From Text : Finish. Commands found : {commands.Count}");
+            LOG.Write("Scan Commands From Text : Success");
             return commands;
         }
     }

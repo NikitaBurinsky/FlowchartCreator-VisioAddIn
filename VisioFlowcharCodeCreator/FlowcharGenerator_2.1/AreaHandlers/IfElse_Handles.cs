@@ -38,7 +38,7 @@ namespace FlowchartGenerator.AreaHandlers
 				CmdNode ElseDot = Diagram.CreateCmdNode(null, CMD.ELSE, LastNoZoneElseNode.GetLocation() + new Vector2D(1, 0));
 				ElseDot.GetShape().SetCellParameter("Width", "0.01 mm");
 				ElseDot.GetShape().SetCellParameter("Height", "0.01 mm");
-				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right, "Else"), ElseDot, DiagramData.ConTag.ToElsePoint);
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right, "Else"), ElseDot);
 				AreaNodes.Add(ElseDot);
 				OutputNodes.Add(new From_Connection(ElseDot, ConType.Bottom));
 			}
