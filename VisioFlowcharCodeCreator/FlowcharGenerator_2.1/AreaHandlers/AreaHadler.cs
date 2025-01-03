@@ -89,12 +89,27 @@ namespace FlowchartGenerator.AreaHandlers
 
 		//Protected methods
 		protected bool IsOpenZone(Command cmd) {return cmd.type <= CMD.LOOP;}
-		protected void UseSubAreaHandler(AreaHandler subArea, int SubRootIndex, out int EOZ)
+		
+		//AREA AND NODES CREATORS
+        protected void CreateInternalArea(AreaHandler subArea, int SubRootIndex, out int EOZ)
+        {
+            subArea.HandleArea(SubRootIndex, out EOZ);
+            InternalAreas.Add(subArea);
+        }
+        protected CmdNode CreateCmdNode(Command command, Vector2D loc, bool IsOutputNode = false)
 		{
-			subArea.HandleArea(SubRootIndex, out EOZ);
-			InternalAreas.Add(subArea);
+			CmdNode node = Diagram.CreateCmdNode(command, loc);
+			AreaNodes.Add(node);
+			return node;
 		}
-		protected virtual int FindEOZ(int ZoneRootIndex)
+        protected CmdNode CreateCmdNode(String text, CMD type, Vector2D loc, bool IsOutputNode = false)
+        {
+            CmdNode node = Diagram.CreateCmdNode(text, type, loc);
+            AreaNodes.Add(node);
+            return node;
+        }
+
+        protected virtual int FindEOZ(int ZoneRootIndex)
 		{
 			int CInd = ZoneRootIndex + 2;
 			for (int OpenedGates = 1; OpenedGates > 0; ++CInd)

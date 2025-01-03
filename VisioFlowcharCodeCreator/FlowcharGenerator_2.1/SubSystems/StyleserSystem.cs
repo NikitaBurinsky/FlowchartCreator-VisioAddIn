@@ -15,6 +15,7 @@ namespace FlowchartGenerator
 			foreach (Visio.Shape arrow in Arrows)
 			{
 				arrow.Cells["LineWeight"].Formula = "2 pt";
+				if(arrow.Text != "Else")//TEST1
 				arrow.Cells["EndArrow"].Formula = "4";
 				arrow.Cells["CompoundType"].Formula = "3";
 				arrow.Cells["Rounding"].Formula = "0.01";
@@ -49,12 +50,12 @@ namespace FlowchartGenerator
 			}
 
             if (GetFigureShapesByType(CMD.BREAK) != null)
-                foreach (CmdNode LoopEnd in GetFigureShapesByType(CMD.BREAK))
+                foreach (CmdNode Break in GetFigureShapesByType(CMD.BREAK))
                 {
-                    LoopEnd.GetShape().SetCellParameter("Width", "10 mm");
-                    LoopEnd.GetShape().SetCellParameter("Height", "0.01 mm");
-                    LoopEnd.GetShape().SetCellParameter("Geometry1.NoShow", "TRUE");
-                    LoopEnd.GetShape().SetCellParameter("TxtPinY", "=Height*0.5+0.083");
+                    Break.GetShape().SetCellParameter("Width", "10 mm");
+                    Break.GetShape().SetCellParameter("Height", "0.01 mm");
+                    Break.GetShape().SetCellParameter("Geometry1.NoShow", "TRUE");
+                    Break.GetShape().SetCellParameter("TxtPinY", "=Height*0.5+0.083");
                 }
 
             if (GetFigureShapesByType(CMD.LOOP) != null)
@@ -63,13 +64,6 @@ namespace FlowchartGenerator
 				LoopStart.GetShape().SetCellParameter("Width", "25 mm");
 				LoopStart.GetShape().SetCellParameter("Height", "15 mm");
 			}
-            if (GetFigureShapesByType(CMD.ELSE) != null)
-                foreach (CmdNode LoopStart in GetFigureShapesByType(CMD.ELSE))
-                {
-                   //LoopStart.GetShape().SetCellParameter("Width", "10 mm");
-                   //LoopStart.GetShape().SetCellParameter("Height", "5 mm");
-					LoopStart.GetShape().SetShapeText("else");
-                }
 
             return true;
 		}

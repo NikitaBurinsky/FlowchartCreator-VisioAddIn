@@ -85,10 +85,10 @@ namespace FlowchartGenerator
 			for (int i = 0; i < From.Count; ++i)
 				ConnectCmdShapesBase(From[i], To);
 		}
-		public void ConnectCmdShapesBase(From_Connection From, CmdNode To)
+		public Visio.Shape ConnectCmdShapesBase(From_Connection From, CmdNode To)
 		{
-			if (From.FromNode == null || To == null) return;
-			if (From.FromNode.GetCMDType == CMD.RETURN) return;
+			if (From.FromNode == null || To == null) return null;
+			if (From.FromNode.GetCMDType == CMD.RETURN) return null;
 
 			bool isFromHigher = false;
 			if (From.FromNode.GetLocation().Y >= To.GetLocation().Y)
@@ -108,7 +108,7 @@ namespace FlowchartGenerator
 			if (CreatedConnector == null)
 			{
 				LOG.Write($"Failed connector creation between : {From.FromNode.GetText()} -> {To.GetText()}");
-				return;
+				return null;
 			}
 			CreatedConnector.Text = From.Text;
 			int conHash = ShapeMaster.GetConnectionHash(From.FromConnectionType, ConType.Top, isFromHigher);
@@ -118,6 +118,7 @@ namespace FlowchartGenerator
 				SpawnedConnectorsByType.Add(conHash, new List<Visio.Shape>() { CreatedConnector });
 
 			SpawnedArrows.Add(CreatedConnector);
+			return CreatedConnector;
 		}
 		public Vector2D FindNextLogicalLocation(List<From_Connection> From)
 		{

@@ -57,7 +57,7 @@ namespace FlowchartGenerator
 				LOG.Write("Handle function area : Success");
 				--CurLoc.Y;
 				StartArea.SetZoneLocationByRootLocation(CurLoc);
-				Diagram.ConnectCmdShapesBase(StartNode.GetConnection(ConType.Bottom), StartArea.AreaRoot);
+				Diagram.ConnectCmdShapesBase(StartNode.CreateFromCon(ConType.Bottom), StartArea.AreaRoot);
 
 				LOG.Write("Stylise : Start");
 				Styliser.Style_Arrows();
