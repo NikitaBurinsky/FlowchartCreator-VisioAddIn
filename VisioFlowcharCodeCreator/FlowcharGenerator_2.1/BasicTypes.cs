@@ -42,7 +42,6 @@ namespace FlowchartGenerator
 	}
 
 
-
 	public struct From_Connection
     {
         public CmdNode FromNode;
@@ -53,17 +52,6 @@ namespace FlowchartGenerator
 			Text = text;
             FromConnectionType = conType;
             FromNode = fromNode;
-        }
-    }
-
-    public struct AreaReturn
-    {
-        public List<CmdNode> AreaEnds;
-        public int EOZIndex;
-        public AreaReturn(int E)
-        {
-            AreaEnds = new List<CmdNode>();
-            EOZIndex = E;
         }
     }
 }

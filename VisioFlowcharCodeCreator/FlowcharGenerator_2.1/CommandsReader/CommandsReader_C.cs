@@ -233,9 +233,6 @@ public class CommandsReader
                     }
                 }
         }
-
-
-
         return true;
     }
 
