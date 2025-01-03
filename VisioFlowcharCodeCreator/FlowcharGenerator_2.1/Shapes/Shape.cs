@@ -1,5 +1,4 @@
-﻿using System.Windows.Media.Media3D;
-using Visio = Microsoft.Office.Interop.Visio;
+﻿using Visio = Microsoft.Office.Interop.Visio;
 
 
 namespace FlowchartGenerator
@@ -50,18 +49,8 @@ namespace FlowchartGenerator
 		}
 		public string GetShapeText() { return shape.Text; }
 		public void SetShapeText(string text) { shape.Text = text; }
-		public void SetWidth(float width) { shape.Cells["Width"].Formula = $"{width} mm"; }
-		public void SetHeight(float height) { shape.Cells["Height"].Formula = $"{height} mm"; }
 
-		public void SetSize(Vector2D newSize)
-		{
-            shape.Cells["Height"].Formula = $"{newSize.X} mm";
-            shape.Cells["Width"].Formula = $"{newSize.Y} mm";
-        }
-
-
-
-        public static Visio.Shape ConnectSideToTop(From_Connection From, Shape To, Visio.Master conMaster)
+		public static Visio.Shape ConnectSideToTop(From_Connection From, Shape To, Visio.Master conMaster)
 		{
             Visio.Shape Con = null;
             Con = Page.Drop(conMaster, 0, 0);
@@ -83,6 +72,7 @@ namespace FlowchartGenerator
 			Con.Cells["EndY"].FormulaForce = $"=('{ToName}'!PinY + ('{ToName}'!Height * 0.5))";
             return Con;
         }
+
 		public static Visio.Shape ConnectBottomToTop(From_Connection From, Shape To, Visio.Master conMaster) 
 		{
             Visio.Shape Con = null;

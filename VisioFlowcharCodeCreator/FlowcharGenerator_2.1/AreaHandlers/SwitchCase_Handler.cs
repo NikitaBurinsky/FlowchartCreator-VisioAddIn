@@ -20,7 +20,8 @@ namespace FlowchartGenerator.AreaHandlers
 			}
 
 			Vector2D CurNodeLoc = new Vector2D(0, 0);
-			CmdNode SwitchNode = CreateCmdNode(Commands[ZoneRootIndex], CurNodeLoc);
+			CmdNode SwitchNode = Diagram.CreateCmdNode(Commands[ZoneRootIndex], CurNodeLoc);
+			AreaNodes.Add(SwitchNode);
 			AreaRoot = SwitchNode;
 			int EOZIndex;
 			List<int> CasesFound = FindCasesAndEOZ(ZoneRootIndex, out EOZIndex);
