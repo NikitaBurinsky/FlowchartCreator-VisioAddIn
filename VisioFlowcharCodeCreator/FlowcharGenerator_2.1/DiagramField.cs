@@ -6,18 +6,73 @@ using Visio = Microsoft.Office.Interop.Visio;
 
 namespace FlowchartGenerator
 {
+	public class DiagramData
+	{
+		public enum ConTag : Int16 { ToElsePoint , None};
+		public struct ConnectorsStatsData
+		{
+			public From_Connection From;
+			public CmdNode To;
+			public Visio.Shape shape;
+			public string Tag;
+		}
+		//Stats
+		private Dictionary<CMD, List<CmdNode>> SpawnedNodesByType = new Dictionary<CMD, List<CmdNode>>();
+		private List<CmdNode> SpawnedNodes = new List<CmdNode>();
+		private List<Visio.Shape> SpawnedConnectors = new List<Visio.Shape>();
+		private Dictionary<ConTag, List<ConnectorsStatsData>> SpawnedConnectorsByTag = new Dictionary<ConTag, List<ConnectorsStatsData>>();
+
+		//Methods
+		public List<CmdNode> GetAllSpawnedNodes() { return SpawnedNodes; }
+		public List<Visio.Shape> GetAllSpawnedConnectors() { return SpawnedConnectors; }
+		public void AddConnectorToStats(Visio.Shape connector, From_Connection From, CmdNode To, ConTag Tag = ConTag.None)
+		{
+			ConnectorsStatsData conData = new ConnectorsStatsData { shape = connector, To = To, From = From};
+			if (SpawnedConnectorsByTag.ContainsKey(Tag))
+				SpawnedConnectorsByTag[Tag].Add(conData);
+			else
+				SpawnedConnectorsByTag.Add(Tag, new List<ConnectorsStatsData>() { conData });
+			SpawnedConnectors.Add(connector);
+		}
+		public void AddCmdNodeToStats(CmdNode node)
+		{
+			if (SpawnedNodesByType.ContainsKey(node.GetCMDType))
+			{
+				SpawnedNodesByType[node.GetCMDType].Add(node);
+			}
+			else
+			{
+				SpawnedNodesByType.Add(node.GetCMDType, new List<CmdNode>());
+				SpawnedNodesByType[node.GetCMDType].Add(node);
+			}
+			SpawnedNodes.Add(node);
+		}
+
+		/*
+		 * Getters
+		 */
+		public List<ConnectorsStatsData> GetAllConnectorsWithTag(ConTag tag)
+		{
+			if(SpawnedConnectorsByTag.ContainsKey(tag))
+				return SpawnedConnectorsByTag[tag];
+			return null;
+		}
+		public List<CmdNode> GetAllSpawnedNodesByCMD(CMD type)
+		{
+			if (SpawnedNodesByType.ContainsKey(type))
+				return SpawnedNodesByType[type];
+			return null;
+		}
+	}
+
 	public class DiagramField
 	{
-		//Stats
-		public Dictionary<CMD, List<CmdNode>> TypedShapesRefs = new Dictionary<CMD, List<CmdNode>>();
-		public List<CmdNode> SpawnedShapes = new List<CmdNode>();
-		public List<Visio.Shape> SpawnedArrows = new List<Visio.Shape>();
-		public Dictionary<int, List<Visio.Shape>> SpawnedConnectorsByType = new Dictionary<int, List<Visio.Shape>>();
 
 		//Members
 		static Logger LOG = new Logger("Field");
 		private static Visio.Application Application;
 		private static Visio.Page Page;
+		public DiagramData Stats { get; } = new DiagramData();
 
 		//Values
 		private Vector2D BaseGridStep;
@@ -46,46 +101,23 @@ namespace FlowchartGenerator
 		}
 		public CmdNode CreateCmdNode(Command cmd, Vector2D loc)
 		{
-			int id = SpawnedShapes.Count;
-			CmdNode node = new CmdNode(cmd.text, cmd.type, loc, id);
-			if (TypedShapesRefs.ContainsKey(cmd.type))
-			{
-				TypedShapesRefs[cmd.type].Add(node);
-			}
-			else
-			{
-				TypedShapesRefs.Add(cmd.type, new List<CmdNode>());
-				TypedShapesRefs[cmd.type].Add(node);
-			}
-			SpawnedShapes.Add(node);
-
+			CmdNode node = new CmdNode(cmd.text, cmd.type, loc);
+			Stats.AddCmdNodeToStats(node);
 			return node;
 		}
 		public CmdNode CreateCmdNode(string text, CMD type, Vector2D loc)
 		{
-			int id = SpawnedShapes.Count;
-			CmdNode node = new CmdNode(text, type, loc, id);
-
-			if (TypedShapesRefs.ContainsKey(type))
-			{
-				TypedShapesRefs[type].Add(node);
-			}
-			else
-			{
-				TypedShapesRefs.Add(type, new List<CmdNode>());
-				TypedShapesRefs[type].Add(node);
-			}
-			SpawnedShapes.Add(node);
-
+			CmdNode node = new CmdNode(text, type, loc);
+			Stats.AddCmdNodeToStats(node);
 			return node;
 		}
-		public void ConnectCmdShapesBase(List<From_Connection> From, CmdNode To)
+		public void ConnectCmdShapesBase(List<From_Connection> From, CmdNode To, DiagramData.ConTag conTag = DiagramData.ConTag.None)
 		{
 			if (From == null || To == null) return;
 			for (int i = 0; i < From.Count; ++i)
-				ConnectCmdShapesBase(From[i], To);
+				ConnectCmdShapesBase(From[i], To, conTag);
 		}
-		public void ConnectCmdShapesBase(From_Connection From, CmdNode To)
+		public void ConnectCmdShapesBase(From_Connection From, CmdNode To, DiagramData.ConTag conTag = DiagramData.ConTag.None)
 		{
 			if (From.FromNode == null || To == null) return;
 			if (From.FromNode.GetCMDType == CMD.RETURN) return;
@@ -111,13 +143,7 @@ namespace FlowchartGenerator
 				return;
 			}
 			CreatedConnector.Text = From.Text;
-			int conHash = ShapeMaster.GetConnectionHash(From.FromConnectionType, ConType.Top, isFromHigher);
-			if (SpawnedConnectorsByType.ContainsKey(conHash))
-				SpawnedConnectorsByType[conHash].Add(CreatedConnector);
-			else
-				SpawnedConnectorsByType.Add(conHash, new List<Visio.Shape>() { CreatedConnector });
-
-			SpawnedArrows.Add(CreatedConnector);
+			Stats.AddConnectorToStats(CreatedConnector, From, To, conTag);
 		}
 		public Vector2D FindNextLogicalLocation(List<From_Connection> From)
 		{
