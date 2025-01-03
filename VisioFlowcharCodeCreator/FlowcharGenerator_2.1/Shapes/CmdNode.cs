@@ -16,7 +16,7 @@ namespace FlowchartGenerator
 			shape = new FlowchartGenerator.Shape(Location, type, text);
 			Type = type;
 		}
-		public From_Connection GetConnection(ConType conType, string text = null) { return new From_Connection(this, conType, text); }
+		public From_Connection CreateFromCon(ConType conType, string text = null) { return new From_Connection(this, conType, text); }
 		public Vector2D GetLocation() { return shape.GetLocation(); }
 		public void SetLocation(Vector2D newLoc) { shape.SetLocation(newLoc); }
 		public string GetText() { return shape.GetShapeText(); }

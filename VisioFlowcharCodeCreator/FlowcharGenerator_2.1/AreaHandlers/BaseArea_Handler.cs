@@ -33,7 +33,7 @@ namespace FlowchartGenerator.AreaHandlers
 						curCommand.type == CMD.LOOP)
 					{
 						areaHandler = AreaHandler.GetAreaHandler(Iter, Commands);
-						UseSubAreaHandler(areaHandler, Iter, out Iter);
+						CreateInternalArea(areaHandler, Iter, out Iter);
 						areaHandler.SetZoneLocationByRootLocation(NextNodeLocation);
 						Diagram.ConnectCmdShapesBase(FromConnects, areaHandler.AreaRoot);
 						if (AreaRoot == null)
@@ -51,7 +51,7 @@ namespace FlowchartGenerator.AreaHandlers
 					{
 						if (AreaRoot == null)
 						{
-							cmdNode = Diagram.CreateCmdNode(Commands[Iter].text, Commands[Iter].type, NextNodeLocation);
+							cmdNode = CreateCmdNode(Commands[Iter].text, Commands[Iter].type, NextNodeLocation);
 							AreaRoot = cmdNode;
 							NextNodeLocation = AreaRoot.GetLocation();
 							NextNodeLocation.Y -= 1;
@@ -60,12 +60,11 @@ namespace FlowchartGenerator.AreaHandlers
 						}
 						else
 						{
-							cmdNode = Diagram.CreateCmdNode(Commands[Iter].text, Commands[Iter].type, NextNodeLocation);
+							cmdNode = CreateCmdNode(Commands[Iter].text, Commands[Iter].type, NextNodeLocation);
 							NextNodeLocation.Y -= 1;
 							Diagram.ConnectCmdShapesBase(FromConnects, cmdNode);
 							FromConnects = new List<From_Connection> { new From_Connection(cmdNode, ConType.Bottom) };
 						}
-						AreaNodes.Add(cmdNode);
 						if (cmdNode.GetCMDType == CMD.BREAK)
 							OutputNodes.Add(new From_Connection(cmdNode, ConType.Bottom));
 					}
