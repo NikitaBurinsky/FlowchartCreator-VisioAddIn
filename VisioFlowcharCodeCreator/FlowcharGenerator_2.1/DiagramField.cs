@@ -121,6 +121,7 @@ namespace FlowchartGenerator
 		{
 			if (From.FromNode == null || To == null) return;
 			if (From.FromNode.GetCMDType == CMD.RETURN) return;
+			if (To.GetCMDType == CMD.BREAK) conTag = DiagramData.ConTag.ToElsePoint;
 
 			bool isFromHigher = false;
 			if (From.FromNode.GetLocation().Y >= To.GetLocation().Y)

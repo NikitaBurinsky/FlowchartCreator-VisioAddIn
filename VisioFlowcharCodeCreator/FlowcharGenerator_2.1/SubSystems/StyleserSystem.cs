@@ -66,16 +66,11 @@ namespace FlowchartGenerator
                 }
 
             if (stats.GetAllSpawnedNodesByCMD(CMD.LOOP) != null)
-                foreach (CmdNode LoopStart in stats.GetAllSpawnedNodesByCMD(CMD.LOOP))
+            foreach (CmdNode LoopStart in stats.GetAllSpawnedNodesByCMD(CMD.LOOP))
 			{
 				LoopStart.GetShape().SetCellParameter("Width", "25 mm");
 				LoopStart.GetShape().SetCellParameter("Height", "15 mm");
 			}
-            if (stats.GetAllSpawnedNodesByCMD(CMD.ELSE) != null)
-                foreach (CmdNode LoopStart in stats.GetAllSpawnedNodesByCMD(CMD.ELSE))
-                {
-					LoopStart.GetShape().SetShapeText("else");
-                }
 
             return true;
 		}

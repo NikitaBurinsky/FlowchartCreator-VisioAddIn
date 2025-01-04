@@ -214,7 +214,14 @@ public class CommandsReader
         int lastEOZ = -1;
         for (int i = commands.Count - 1; i > 0; --i)
         {
-            if (commands[i].type == CMD.EOZ)
+			if (commands[i].type <= CMD.LOOP && commands[i].text.EndsWith(";"))
+			{
+                commands.Insert(i + 1, new Command("", CMD.EOZ));
+				commands.Insert(i, new Command("", CMD.SOZ));
+				continue;
+			}
+
+			if (commands[i].type == CMD.EOZ)
                 lastEOZ = i;
 
             if (IsOpenZone(commands[i - 1]))

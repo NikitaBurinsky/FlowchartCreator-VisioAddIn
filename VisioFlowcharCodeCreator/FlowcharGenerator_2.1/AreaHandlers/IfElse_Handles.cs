@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using Visio = Microsoft.Office.Interop.Visio;
+
 
 
 namespace FlowchartGenerator.AreaHandlers
@@ -18,29 +15,23 @@ namespace FlowchartGenerator.AreaHandlers
 	{
 			AreaType = Commands[ZoneRootIndex].type;
 			Vector2D CurNodeLoc = new Vector2D(0, 0);
-			CmdNode IfNode = Diagram.CreateCmdNode(Commands[ZoneRootIndex], CurNodeLoc);
+			CmdNode IfNode = CreateCmdNode(Commands[ZoneRootIndex], CurNodeLoc);
 			CmdNode LastNoZoneElseNode = IfNode;
             AreaRoot = IfNode;
-			AreaNodes.Add(IfNode);
 
 			BaseArea_Handler IFAreaHandler = new BaseArea_Handler(Commands);
-			UseSubAreaHandler(IFAreaHandler, ZoneRootIndex, out EOZ);
-			OutputNodes.AddRange(IFAreaHandler.OutputNodes);
-			CurNodeLoc.Plus(IFAreaHandler.GetWidth()/-2, -1);
-			IFAreaHandler.SetZoneLocationByRootLocation(CurNodeLoc);
-			Diagram.ConnectCmdShapesBase(IfNode.GetConnection(ConType.Left, "Да"), IFAreaHandler.AreaRoot);
+			CreateInternalArea(IFAreaHandler, ZoneRootIndex, out EOZ);
+            CurNodeLoc.Plus(IFAreaHandler.GetWidth()/-2, -1);
+            IFAreaHandler.SetZoneLocationByRootLocation(CurNodeLoc);
+            OutputNodes.AddRange(IFAreaHandler.OutputNodes);
+			Diagram.ConnectCmdShapesBase(IfNode.CreateFromCon(ConType.Left, "Да"), IFAreaHandler.AreaRoot);
 			CurNodeLoc.Plus(IFAreaHandler.GetWidth(), 1);
 
 			int IsHaveElse;
 			List<int> ElseIfBranches = FindEOZ_And_ElseBranches(ZoneRootIndex, out IsHaveElse, out EOZ);
 			if (ElseIfBranches.Count == 0 && IsHaveElse == -1 && AreaType != CMD.ELSEIF)
 			{
-				CmdNode ElseDot = Diagram.CreateCmdNode(null, CMD.ELSE, LastNoZoneElseNode.GetLocation() + new Vector2D(1, 0));
-				ElseDot.GetShape().SetCellParameter("Width", "0.01 mm");
-				ElseDot.GetShape().SetCellParameter("Height", "0.01 mm");
-				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right, "Else"), ElseDot, DiagramData.ConTag.ToElsePoint);
-				AreaNodes.Add(ElseDot);
-				OutputNodes.Add(new From_Connection(ElseDot, ConType.Bottom));
+				CmdNode ElseDot = Create_ELSE_Point(LastNoZoneElseNode);
 			}
 			else
 			{
@@ -50,6 +41,17 @@ namespace FlowchartGenerator.AreaHandlers
 			RECalculateAreaSizeForce();
 			return true;
 		}
+
+
+		private CmdNode Create_ELSE_Point(CmdNode LastNoZoneElseNode)
+		{
+			Vector2D elseLoc = LastNoZoneElseNode.GetLocation() + new Vector2D(1, 0);
+            CmdNode ElseDot = CreateCmdNode(null, CMD.ELSE, elseLoc);
+			ElseDot.GetShape().SetSize(new Vector2D(0.01f, 0.01f));
+			Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.CreateFromCon(ConType.Right, "Else"), ElseDot, DiagramData.ConTag.ToElsePoint);
+			OutputNodes.Add(new From_Connection(ElseDot, ConType.Bottom));
+			return ElseDot;
+        }
         private void Handle_ELSEIF_Cases_IfExist(List<int> ElseIfBranches, ref Vector2D CurNodeLoc, ref CmdNode LastNoZoneElseNode)
         {
             foreach (int ElseIfIndex in ElseIfBranches)
@@ -59,15 +61,14 @@ namespace FlowchartGenerator.AreaHandlers
 
                 IfElse_Handler CurElseIfHandler = new IfElse_Handler(Commands, CMD.ELSEIF);
 				ElseIfHandlers.Add(CurElseIfHandler);
-                UseSubAreaHandler(CurElseIfHandler, ElseIfIndex, out CurElseIfEOZ);
+                CreateInternalArea(CurElseIfHandler, ElseIfIndex, out CurElseIfEOZ);
                 CurElseIfHandler.SetZoneLocationByRootLocation(CurNodeLoc + new Vector2D(CurElseIfHandler.GetWidth()/2, 0));
                 CurNodeLoc.X += CurElseIfHandler.GetWidth();
-				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right, "Нет"), CurElseIfHandler.AreaRoot);
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.CreateFromCon(ConType.Right, "Нет"), CurElseIfHandler.AreaRoot);
                 LastNoZoneElseNode = CurElseIfHandler.AreaRoot;
 				OutputNodes.AddRange(CurElseIfHandler.OutputNodes);
             }
         }
-
         private bool Handle_ELSE_Case_ifExist(int ElseIndex, ref Vector2D CurNodeLoc, ref int ElseEOZ, ref CmdNode LastNoZoneElseNode)
         {
 			if (AreaType == CMD.ELSEIF) 
@@ -77,11 +78,11 @@ namespace FlowchartGenerator.AreaHandlers
             {
 				CurNodeLoc.Y -= 1;
 				BaseArea_Handler ElseHandler = new BaseArea_Handler(Commands);
-                UseSubAreaHandler(ElseHandler, ElseIndex, out ElseEOZ);
+                CreateInternalArea(ElseHandler, ElseIndex, out ElseEOZ);
                 ElseHandler.SetZoneLocationByRootLocation(CurNodeLoc + new Vector2D((ElseHandler.GetWidth() / 2), 0));
                 CurNodeLoc.Plus(ElseHandler.GetWidth(), 0); 
                 OutputNodes.AddRange(ElseHandler.OutputNodes);//!!!
-				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right), ElseHandler.AreaRoot);
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.CreateFromCon(ConType.Right, "Else"), ElseHandler.AreaRoot);
                 return true;
             }
 			else
@@ -89,14 +90,13 @@ namespace FlowchartGenerator.AreaHandlers
 				CmdNode ElseDot = Diagram.CreateCmdNode(null, CMD.ELSE, LastNoZoneElseNode.GetLocation() + new Vector2D(0.5f, 0));
 				ElseDot.GetShape().SetCellParameter("Width", "0.01 mm");
 				ElseDot.GetShape().SetCellParameter("Height", "0.01 mm");
-				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.GetConnection(ConType.Right), ElseDot);
+				Diagram.ConnectCmdShapesBase(LastNoZoneElseNode.CreateFromCon(ConType.Right), ElseDot);
 				AreaNodes.Add(ElseDot);
 				OutputNodes.Add(new From_Connection(ElseDot, ConType.Bottom));
 			}
 
 			return false;
         }
-
         private List<int> FindEOZ_And_ElseBranches(int ZoneRootIndex, out int IsHaveElse, out int EOZ)
 		{
             List<int> ElseIfBranches;
@@ -112,7 +112,6 @@ namespace FlowchartGenerator.AreaHandlers
             }
 			return ElseIfBranches;
         }
-
 		private List<int> FindDecisionCasesAndEOZ(int ZoneRootIndex, out int IsHaveElse, out int EOZ)
 		{
 			List<int> BranchesFound = new List<int>();
@@ -139,7 +138,6 @@ namespace FlowchartGenerator.AreaHandlers
 				}
 			}
 		}
-
 
 
 	}

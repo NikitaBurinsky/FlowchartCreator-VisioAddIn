@@ -20,8 +20,7 @@ namespace FlowchartGenerator.AreaHandlers
 			}
 
 			Vector2D CurNodeLoc = new Vector2D(0, 0);
-			CmdNode SwitchNode = Diagram.CreateCmdNode(Commands[ZoneRootIndex], CurNodeLoc);
-			AreaNodes.Add(SwitchNode);
+			CmdNode SwitchNode = CreateCmdNode(Commands[ZoneRootIndex], CurNodeLoc);
 			AreaRoot = SwitchNode;
 			int EOZIndex;
 			List<int> CasesFound = FindCasesAndEOZ(ZoneRootIndex, out EOZIndex);
@@ -38,9 +37,8 @@ namespace FlowchartGenerator.AreaHandlers
 			foreach (int CaseIndex in CasesFound)
 			{
 				BaseArea_Handler CurAreaHandler = new BaseArea_Handler(Commands);
-				CurAreaHandler.HandleArea(CaseIndex, out CaseEoZ);
+				CreateInternalArea(CurAreaHandler, CaseIndex, out CaseEoZ);
 				Diagram.ConnectCmdShapesBase(new From_Connection(SwitchNode, ConType.Bottom), CurAreaHandler.AreaRoot);
-				InternalAreas.Add(CurAreaHandler);
 				CurAreaHandler.SetZoneLocationByRootLocation(CurNodeLoc);
 				CurNodeLoc.X += CurAreaHandler.GetWidth();
 				OutputNodes.AddRange(CurAreaHandler.OutputNodes);
@@ -58,12 +56,12 @@ namespace FlowchartGenerator.AreaHandlers
 		{
 			List<int> CaseIndexes =  new List<int>();
 			int CInd = ZoneRootIndex + 2;
-			for (int OpenedGates = 1; OpenedGates > 0; ++CInd)
+			for (int OpenedGates = 1; OpenedGates > 0; ++CInd)//Change to Switch (TEST)
 			{
 				if (Commands[CInd].type == CMD.SOZ)
 					++OpenedGates;
 				else if (Commands[CInd].type == CMD.EOZ)
-					--OpenedGates;
+					--OpenedGates;//Возможно дело в ретурне
 				else if (Commands[CInd].type == CMD.CASE || Commands[CInd].type == CMD.DEFAULT_SWITCH)
 					CaseIndexes.Add(CInd);
 			}

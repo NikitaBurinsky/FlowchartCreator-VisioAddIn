@@ -1,4 +1,5 @@
-﻿using Visio = Microsoft.Office.Interop.Visio;
+﻿using System.Drawing;
+using Visio = Microsoft.Office.Interop.Visio;
 
 
 namespace FlowchartGenerator
@@ -50,6 +51,11 @@ namespace FlowchartGenerator
 		public string GetShapeText() { return shape.Text; }
 		public void SetShapeText(string text) { shape.Text = text; }
 
+		public void SetSize(Vector2D newSize)
+		{
+			shape.Cells["Height"].FormulaForce = $"{newSize.Y} mm";
+			shape.Cells["Width"].FormulaForce = $"{newSize.X} mm";
+		}
 		public static Visio.Shape ConnectSideToTop(From_Connection From, Shape To, Visio.Master conMaster)
 		{
             Visio.Shape Con = null;
