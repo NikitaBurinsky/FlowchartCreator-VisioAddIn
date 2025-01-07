@@ -15,6 +15,7 @@ The generator scans the entered code, converting each line into one of the follo
 To add a specific type of command, you need to add it to the corresponding line in Commands.xlsx and fill in the cells Type, StartsWith, Cmd Name and (optionally) Contains and NotContains (Characters and parts of the string contained in the command entry)
 
 
-![image](https://github.com/user-attachments/assets/a1887193-23c9-422a-9c62-af9e33bad9f6)
+![image](https://github.com/user-attachments/assets/86229a9a-f75b-418b-be6b-6a780fe805dd)
 
-![image](https://github.com/user-attachments/assets/4cb4f16a-2e6f-4250-a722-9adf41b763fa)
+![image](https://github.com/user-attachments/assets/88ec98f8-91d5-4d7c-ab7e-ac596465c929)
+
