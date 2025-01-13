@@ -148,9 +148,12 @@ getchar();
   <data name="label2.Text" xml:space="preserve">
     <value>Flowchart Generator Add-In creates a flowchart of the code presented in C/C++ languages.
 
+READ BEFORE USING!
+
 How to use :
 Insert the function for which you want to create a flowchart and click Generate.
 ! All commands must start from a new line.
+! All opening zone commands must have { and }. Using constructions as "while(true);" may be problematic. Use "while(true){};"  
  
 The list of commands recognized by the program is in the file Commands.xlsx. 
 Unrecognized commands will be marked as Process or Subprocess. 

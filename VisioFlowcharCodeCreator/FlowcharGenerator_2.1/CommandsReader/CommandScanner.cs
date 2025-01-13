@@ -17,8 +17,6 @@ public class CMD_CommandScanner
 		worksheet = package.Workbook.Worksheets[0];
 
 		CheckAndCalculateSheetSize();
-
-
 	}
 
 	//USER INTERFACE

@@ -39,20 +39,25 @@
 			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// textBox
 			// 
 			this.textBox.AcceptsTab = true;
+			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-			this.textBox.Location = new System.Drawing.Point(536, 42);
+			this.textBox.Location = new System.Drawing.Point(3, 3);
 			this.textBox.MaxLength = 64000;
 			this.textBox.Multiline = true;
 			this.textBox.Name = "textBox";
 			this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBox.Size = new System.Drawing.Size(703, 775);
+			this.textBox.Size = new System.Drawing.Size(698, 735);
 			this.textBox.TabIndex = 1;
 			this.textBox.TabStop = false;
 			this.textBox.Text = resources.GetString("textBox.Text");
@@ -152,12 +157,27 @@
 			this.label4.TabIndex = 9;
 			this.label4.Text = "Max number of letters in one figure (other will be cut off). -1 means no limits";
 			// 
+			// tableLayoutPanel1
+			// 
+			this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.tableLayoutPanel1.ColumnCount = 1;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.Controls.Add(this.textBox, 0, 0);
+			this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(536, 42);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 1;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(704, 741);
+			this.tableLayoutPanel1.TabIndex = 10;
+			// 
 			// AddInMenuForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.ClientSize = new System.Drawing.Size(1269, 891);
+			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.numericUpDown2);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -167,12 +187,13 @@
 			this.Controls.Add(this.Btn_CommandsFileOpen);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.Generate_Btn);
-			this.Controls.Add(this.textBox);
 			this.Name = "AddInMenuForm";
 			this.Text = "Flowchart Generator Menu";
 			this.Load += new System.EventHandler(this.AddInMenuForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			this.tableLayoutPanel1.ResumeLayout(false);
+			this.tableLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -190,5 +211,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpDown2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 	}
 }
