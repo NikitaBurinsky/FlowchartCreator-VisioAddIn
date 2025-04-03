@@ -16,8 +16,8 @@
 
 	
   <ItemGroup>
-    <Compile Remove="v3\CommandScanner.cs" />
-    <Compile Remove="v3\CommandsReader_C.cs" />
+    <Compile Remove="Internal\CommandScanner.cs" />
+    <Compile Remove="Internal\CommandsReader_C.cs" />
   </ItemGroup>
 
   <ItemGroup>

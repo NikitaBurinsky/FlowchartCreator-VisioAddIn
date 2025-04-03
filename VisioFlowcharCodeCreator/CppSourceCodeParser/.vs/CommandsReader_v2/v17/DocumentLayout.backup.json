@@ -1,43 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{236094C6-09DA-4AB8-AE22-877D5CC34F21}|..\\C#.ConsoleTestfield\\C#.ConsoleTestfield.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#.consoletestfield\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\v3\\cmdparserteam\\cmdtokenlistpostprocesser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:v3\\cmdparserteam\\cmdtokenlistpostprocesser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\obj\\Debug\\net481\\CommandsReader_v2.GlobalUsings.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:obj\\Debug\\net481\\CommandsReader_v2.GlobalUsings.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\commandsreader_v2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:commandsreader_v2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\commandsreader_v2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:commandsreader_v2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\v3\\cmdparserteam\\cmdtokenizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:v3\\cmdparserteam\\cmdtokenizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\v3\\cmdparserteam\\cmdparseoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:v3\\cmdparserteam\\cmdparseoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\v3\\cmddatatypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:v3\\cmddatatypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\code_projects\\c#_testcase\\v3\\cppcommandsparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:v3\\cppcommandsparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -45,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,115 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CommandsReader_v2.GlobalUsings.g.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\obj\\Debug\\net481\\CommandsReader_v2.GlobalUsings.g.cs",
-              "RelativeDocumentMoniker": "obj\\Debug\\net481\\CommandsReader_v2.GlobalUsings.g.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\obj\\Debug\\net481\\CommandsReader_v2.GlobalUsings.g.cs",
-              "RelativeToolTip": "obj\\Debug\\net481\\CommandsReader_v2.GlobalUsings.g.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T07:06:58.718Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CommandsReader_v2.csproj",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\CommandsReader_v2.csproj",
-              "RelativeDocumentMoniker": "CommandsReader_v2.csproj",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\CommandsReader_v2.csproj",
-              "RelativeToolTip": "CommandsReader_v2.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-03T07:02:57.357Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CommandsReader_v2",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\CommandsReader_v2.csproj",
-              "RelativeDocumentMoniker": "CommandsReader_v2.csproj",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\CommandsReader_v2.csproj",
-              "RelativeToolTip": "CommandsReader_v2.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-03T07:03:06.349Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CmdTokenListPostProcesser.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
-              "RelativeDocumentMoniker": "v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
-              "RelativeToolTip": "v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAuwDcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T06:34:27.65Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CmdTokenizer.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenizer.cs",
-              "RelativeDocumentMoniker": "v3\\CmdParserTeam\\CmdTokenizer.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenizer.cs",
-              "RelativeToolTip": "v3\\CmdParserTeam\\CmdTokenizer.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAiwEsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T06:32:31.423Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CmdParseOptions.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParseOptions.cs",
-              "RelativeDocumentMoniker": "v3\\CmdParserTeam\\CmdParseOptions.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParseOptions.cs",
-              "RelativeToolTip": "v3\\CmdParserTeam\\CmdParseOptions.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAnwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T06:28:01.091Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#.ConsoleTestfield\\Program.cs",
-              "RelativeDocumentMoniker": "..\\C#.ConsoleTestfield\\Program.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#.ConsoleTestfield\\Program.cs",
-              "RelativeToolTip": "..\\C#.ConsoleTestfield\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T18:51:54.307Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CmdDataTypes.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdDataTypes.cs",
-              "RelativeDocumentMoniker": "v3\\CmdDataTypes.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdDataTypes.cs",
-              "RelativeToolTip": "v3\\CmdDataTypes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T19:50:58.897Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CppCommandsParser.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CppCommandsParser.cs",
-              "RelativeDocumentMoniker": "v3\\CppCommandsParser.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CppCommandsParser.cs",
-              "RelativeToolTip": "v3\\CppCommandsParser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T19:50:21.325Z"
             }
           ]
         }

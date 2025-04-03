@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\cppsourcecodeparser\\cmddatatypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32959E28-4845-430C-B286-2E5CCA88DE21}|CommandsReader_v2.csproj|solutionrelative:cmddatatypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +27,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CmdDataTypes.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\CmdDataTypes.cs",
+              "RelativeDocumentMoniker": "CmdDataTypes.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\CmdDataTypes.cs",
+              "RelativeToolTip": "CmdDataTypes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T14:24:21.366Z",
+              "EditorCaption": ""
             }
           ]
         }
