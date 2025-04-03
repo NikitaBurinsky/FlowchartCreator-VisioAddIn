@@ -1,0 +1,15 @@
+{
+  "printf": "OUTPUT",
+  "printf_s": "OUTPUT",
+  "cout": "OUTPUT",
+  "fprintf": "OUTPUT",
+  "fprintf_s": "OUTPUT",
+  "putchar": "OUTPUT",
+  "putch": "OUTPUT",
+  "scanf_s": "INPUT",
+  "scanf": "INPUT",
+  "getchar": "INPUT",
+  "getch": "INPUT",
+  "cin": "INPUT",
+  "fin": "INPUT"
+}

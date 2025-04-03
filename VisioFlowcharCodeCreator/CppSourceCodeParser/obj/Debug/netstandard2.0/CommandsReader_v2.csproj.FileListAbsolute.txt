@@ -1,0 +1,6 @@
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\netstandard2.0\CommandsReader_v2.csproj.AssemblyReference.cache
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\netstandard2.0\CommandsReader_v2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\netstandard2.0\CommandsReader_v2.AssemblyInfoInputs.cache
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\netstandard2.0\CommandsReader_v2.AssemblyInfo.cs
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\netstandard2.0\CommandsReader_v2.csproj.CoreCompileInputs.cache
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\netstandard2.0\CommandsReader_v2.sourcelink.json

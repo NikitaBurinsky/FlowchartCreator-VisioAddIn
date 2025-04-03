@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Visio = Microsoft.Office.Interop.Visio;
 
 namespace FlowchartGenerator
@@ -12,7 +13,6 @@ namespace FlowchartGenerator
 
 		private DiagramField Diagram;
 		private StyleserSystem Styliser = new StyleserSystem();
-		private CommandsReaderImplementation CMDReader;
 		private List<Command> Commands { get; set; }
 
 		//MEMBERS
@@ -21,13 +21,12 @@ namespace FlowchartGenerator
 		Visio.Page ActivePage;
 
 
-		public bool InitialiseSystems(Visio.Application app, Visio.Page page, string textBufferPath, string XlsxCommandsSheet)
+		public bool InitialiseSystems(Visio.Application app, Visio.Page page, string textBufferPath)
 		{
 			LOG.Write("Initialise Systems : Start");
 			ActivePage = page;
 			Application = app;
 			SubSystem.Settings = FGSettings;
-			CMDReader = new CommandsReaderImplementation(XlsxCommandsSheet);
 			Diagram = new DiagramField(Application, ActivePage, new Vector2D(40, 25));
 			ShapeMaster.Startup(Application);
 			SubSystem.InitClass(Diagram, page, app, this);
@@ -35,10 +34,10 @@ namespace FlowchartGenerator
 			return true;
 		}
 
-		public int GenerateDiagram(int StartLocation_X, int StartLocation_Y, string cmdtextpath)
+		public int GenerateDiagram(int StartLocation_X, int StartLocation_Y, List<Command> CommandS)
 		{
 				LOG.Write("Generate diagram : Start");
-				Commands = CMDReader.GetCommandsFromFile(cmdtextpath);
+				Commands = CommandS;	
 				if (Commands[0].type != CMD.StartFunc)
 					return -1;
 				Vector2D CurLoc = new Vector2D(StartLocation_X, StartLocation_Y);

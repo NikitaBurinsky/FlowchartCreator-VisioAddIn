@@ -1,0 +1,203 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\ConsoleTestfield\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\ConsoleTestfield\\ConsoleTestfield.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CmdTokenizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:v3\\CmdParserTeam\\CmdTokenizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdDataTypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:v3\\CmdDataTypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CommandScanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:v3\\CommandScanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CMDTextPreprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:v3\\CmdParserTeam\\CMDTextPreprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParserOptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\TestDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\CommandsReader_v2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CommandsReader_v2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CommandsReader_C.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:v3\\CommandsReader_C.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConsoleTestfield.csproj",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\ConsoleTestfield\\ConsoleTestfield.csproj",
+              "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\ConsoleTestfield\\ConsoleTestfield.csproj",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\ConsoleTestfield\\ConsoleTestfield.csproj",
+              "RelativeToolTip": "..\\..\\..\\Code_Projects\\ConsoleTestfield\\ConsoleTestfield.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-02T18:19:37.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\ConsoleTestfield\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\ConsoleTestfield\\Program.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\ConsoleTestfield\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\Code_Projects\\ConsoleTestfield\\Program.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T18:19:08.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CmdTokenListPostProcesser.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
+              "RelativeDocumentMoniker": "v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
+              "RelativeToolTip": "v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAhwEEAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T06:59:24.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CmdTokenizer.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CmdTokenizer.cs",
+              "RelativeDocumentMoniker": "v3\\CmdParserTeam\\CmdTokenizer.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CmdTokenizer.cs",
+              "RelativeToolTip": "v3\\CmdParserTeam\\CmdTokenizer.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAQwIgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T10:34:22.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CmdDataTypes.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdDataTypes.cs",
+              "RelativeDocumentMoniker": "v3\\CmdDataTypes.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdDataTypes.cs",
+              "RelativeToolTip": "v3\\CmdDataTypes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T10:44:46.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CommandScanner.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CommandScanner.cs",
+              "RelativeDocumentMoniker": "v3\\CommandScanner.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CommandScanner.cs",
+              "RelativeToolTip": "v3\\CommandScanner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T06:56:06.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CMDTextPreprocess.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CMDTextPreprocess.cs",
+              "RelativeDocumentMoniker": "v3\\CmdParserTeam\\CMDTextPreprocess.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CmdParserTeam\\CMDTextPreprocess.cs",
+              "RelativeToolTip": "v3\\CmdParserTeam\\CMDTextPreprocess.cs",
+              "ViewState": "AgIAABYAAADA//////8owCUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T06:38:32.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CmdParserOptions.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParserOptions.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParserOptions.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParserOptions.cs",
+              "RelativeToolTip": "..\\..\\..\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdParserOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T06:26:00.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TestDB.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\TestDB.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\C#_Testcase\\TestDB.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\TestDB.cs",
+              "RelativeToolTip": "..\\..\\..\\Code_Projects\\C#_Testcase\\TestDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T20:08:55.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CommandsReader_v2.csproj",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\CommandsReader_v2.csproj",
+              "RelativeDocumentMoniker": "CommandsReader_v2.csproj",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\CommandsReader_v2.csproj",
+              "RelativeToolTip": "CommandsReader_v2.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-31T06:22:24.224Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CommandsReader_C.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CommandsReader_C.cs",
+              "RelativeDocumentMoniker": "v3\\CommandsReader_C.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\v3\\CommandsReader_C.cs",
+              "RelativeToolTip": "v3\\CommandsReader_C.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T06:24:17.314Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

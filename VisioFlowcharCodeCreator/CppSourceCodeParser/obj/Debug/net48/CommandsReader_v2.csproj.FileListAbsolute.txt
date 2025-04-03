@@ -1,0 +1,13 @@
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\bin\Debug\net48\CommandsReader_v2.dll
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\bin\Debug\net48\CommandsReader_v2.pdb
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\bin\Debug\net48\Newtonsoft.Json.dll
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\bin\Debug\net48\System.Data.OleDb.dll
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.csproj.AssemblyReference.cache
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.AssemblyInfoInputs.cache
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.AssemblyInfo.cs
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.csproj.CoreCompileInputs.cache
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.sourcelink.json
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\Commands.5E180808.Up2Date
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.dll
+C:\Users\Formatis\Documents\GitHub\Code_Projects\C#_Testcase\obj\Debug\net48\CommandsReader_v2.pdb

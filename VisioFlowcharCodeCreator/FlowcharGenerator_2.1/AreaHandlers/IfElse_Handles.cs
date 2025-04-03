@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using Visio = Microsoft.Office.Interop.Visio;
 
-
-
 namespace FlowchartGenerator.AreaHandlers
 {
 	internal class IfElse_Handler : AreaHandler

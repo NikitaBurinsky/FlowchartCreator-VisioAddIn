@@ -1,0 +1,16 @@
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\FlowcharGenerator_2.1.dll
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\FlowcharGenerator_2.1.pdb
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\FlowcharGenerator_2.1.dll.manifest
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\FlowcharGenerator_2.1.vsto
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\CommandsReader_v2.dll
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\Newtonsoft.Json.dll
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\bin\Release\CommandsReader_v2.pdb
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowcharGenerator_3.4.csproj.AssemblyReference.cache
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowcharGenerator_2._1.Properties.Resources.resources
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowchartGenerator.MENU.AddInMenuForm.resources
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowcharGenerator_3.4.csproj.GenerateResource.cache
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowcharGenerator_3.4.csproj.CoreCompileInputs.cache
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\Flowchar.8DA5A02B.Up2Date
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowcharGenerator_2.1.dll
+C:\Users\Formatis\Documents\GitHub\FlowchartCreator-VisioAddIn\VisioFlowcharCodeCreator\FlowcharGenerator_2.1\obj\Release\FlowcharGenerator_2.1.pdb

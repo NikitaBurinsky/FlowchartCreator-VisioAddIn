@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>CppReaderSystem</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="OpenAPIs\**" />
+    <EmbeddedResource Remove="OpenAPIs\**" />
+    <None Remove="OpenAPIs\**" />
+  </ItemGroup>
+
+	
+  <ItemGroup>
+    <Compile Remove="v3\CommandScanner.cs" />
+    <Compile Remove="v3\CommandsReader_C.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.OleDb" Version="9.0.1" />
+  </ItemGroup>
+
+</Project>

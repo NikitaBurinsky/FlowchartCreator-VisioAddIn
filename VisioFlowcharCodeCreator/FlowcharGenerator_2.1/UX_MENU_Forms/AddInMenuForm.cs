@@ -11,12 +11,12 @@ namespace FlowchartGenerator.MENU
 
 		//R
         string _filepath;
-		string _commandsSheetPath;
+		string _commandsJsonPath;
         SettingsSystem _settings;
-        public AddInMenuForm(string filepath_, string sheetpath_, SettingsSystem settings)
+        public AddInMenuForm(string filepath_, string commandspath_, SettingsSystem settings)
 		{
 			InitializeComponent();
-			_commandsSheetPath = sheetpath_;
+			_commandsJsonPath = commandspath_;
 			_filepath = filepath_;
 			_settings = settings;
 		}
@@ -42,7 +42,7 @@ namespace FlowchartGenerator.MENU
 		private void Btn_OpenCommandsFile_Click(object sender, EventArgs e)
 		{
 			//TEST
-			System.Diagnostics.Process.Start(_commandsSheetPath);
+			System.Diagnostics.Process.Start(_commandsJsonPath);
 		}
 
 		private void Btn_Cancel_Click(object sender, EventArgs e)

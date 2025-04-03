@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "GEPjMg2fibo=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\CommandsReader_v2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Formatis\\.nuget\\packages\\microsoft.extensions.apidescription.client\\6.0.3\\microsoft.extensions.apidescription.client.6.0.3.nupkg.sha512",
+    "C:\\Users\\Formatis\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Formatis\\.nuget\\packages\\nswag.apidescription.client\\13.18.2\\nswag.apidescription.client.13.18.2.nupkg.sha512",
+    "C:\\Users\\Formatis\\.nuget\\packages\\nswag.msbuild\\13.18.2\\nswag.msbuild.13.18.2.nupkg.sha512",
+    "C:\\Users\\Formatis\\.nuget\\packages\\system.data.oledb\\9.0.1\\system.data.oledb.9.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

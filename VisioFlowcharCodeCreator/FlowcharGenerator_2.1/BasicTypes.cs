@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
-using OfficeOpenXml.FormulaParsing.Excel.Operators;
 
 namespace FlowchartGenerator
 {
