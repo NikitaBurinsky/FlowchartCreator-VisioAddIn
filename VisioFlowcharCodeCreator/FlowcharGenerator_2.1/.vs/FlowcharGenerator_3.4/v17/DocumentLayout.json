@@ -3,16 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\fg_core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|solutionrelative:fg_core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7083B509-5292-4527-810C-B6F8AD527EAB}|..\\CppSourceCodeParser\\CommandsReader_v2.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\cppsourcecodeparser\\internal\\cmdtextpreprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|solutionrelative:thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\basictypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|solutionrelative:basictypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\fg_core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:fg_core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|c:\\users\\formatis\\documents\\github\\flowchartcreator-visioaddin\\visioflowcharcodecreator\\flowchargenerator_2.1\\basictypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_3.4.csproj|solutionrelative:basictypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\basictypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +28,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ux_menu_forms\\addinmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:ux_menu_forms\\addinmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|solutionrelative:thisaddin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CAA864B1-7956-472D-B9F3-72AFE5FE4CAC}|FlowcharGenerator_2.1.csproj|C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ux_menu_forms\\addinmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -67,8 +70,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 219,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BasicTypes.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\BasicTypes.cs",
+              "RelativeDocumentMoniker": "BasicTypes.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\BasicTypes.cs",
+              "RelativeToolTip": "BasicTypes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T14:13:16.542Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CMDTextPreprocess.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\Internal\\CMDTextPreprocess.cs",
+              "RelativeDocumentMoniker": "..\\CppSourceCodeParser\\Internal\\CMDTextPreprocess.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\CppSourceCodeParser\\Internal\\CMDTextPreprocess.cs",
+              "RelativeToolTip": "..\\CppSourceCodeParser\\Internal\\CMDTextPreprocess.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T08:43:38.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ThisAddIn.cs",
+              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ThisAddIn.cs",
+              "RelativeDocumentMoniker": "ThisAddIn.cs",
+              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ThisAddIn.cs",
+              "RelativeToolTip": "ThisAddIn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T08:42:08.834Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -83,33 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FG_Core.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\FG_Core.cs",
-              "RelativeDocumentMoniker": "FG_Core.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\FG_Core.cs",
-              "RelativeToolTip": "FG_Core.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:20:02.293Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BasicTypes.cs",
-              "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\BasicTypes.cs",
-              "RelativeDocumentMoniker": "BasicTypes.cs",
-              "ToolTip": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\BasicTypes.cs",
-              "RelativeToolTip": "BasicTypes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:13:16.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "BasicTypes.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\BasicTypes.cs",
               "RelativeDocumentMoniker": "BasicTypes.cs",
@@ -121,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CmdTokenizer.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenizer.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenizer.cs",
@@ -133,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "FG_Core.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\FG_Core.cs",
               "RelativeDocumentMoniker": "FG_Core.cs",
@@ -145,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AddInMenuForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\UX_MENU_Forms\\AddInMenuForm.cs",
               "RelativeDocumentMoniker": "UX_MENU_Forms\\AddInMenuForm.cs",
@@ -156,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "ThisAddIn.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\ThisAddIn.cs",
               "RelativeDocumentMoniker": "ThisAddIn.cs",
@@ -168,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CmdTokenListPostProcesser.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\C#_Testcase\\v3\\CmdParserTeam\\CmdTokenListPostProcesser.cs",
@@ -180,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "CppCommandsParser.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\Code_Projects\\C#_Testcase\\v3\\CppCommandsParser.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Code_Projects\\C#_Testcase\\v3\\CppCommandsParser.cs",
@@ -192,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "AddInMenuForm.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\UX_MENU_Forms\\AddInMenuForm.cs",
               "RelativeDocumentMoniker": "UX_MENU_Forms\\AddInMenuForm.cs",
@@ -204,7 +221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "SettingsSystem.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\SubSystems\\SettingsSystem.cs",
               "RelativeDocumentMoniker": "SubSystems\\SettingsSystem.cs",
@@ -216,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "BaseArea_Handler.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\AreaHandlers\\BaseArea_Handler.cs",
               "RelativeDocumentMoniker": "AreaHandlers\\BaseArea_Handler.cs",
@@ -228,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "DiagramField.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\DiagramField.cs",
               "RelativeDocumentMoniker": "DiagramField.cs",
@@ -240,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "StyleserSystem.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\SubSystems\\StyleserSystem.cs",
               "RelativeDocumentMoniker": "SubSystems\\StyleserSystem.cs",
@@ -252,7 +269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "SwitchCase_Handler.cs",
               "DocumentMoniker": "C:\\Users\\Formatis\\Documents\\GitHub\\FlowchartCreator-VisioAddIn\\VisioFlowcharCodeCreator\\FlowcharGenerator_2.1\\AreaHandlers\\SwitchCase_Handler.cs",
               "RelativeDocumentMoniker": "AreaHandlers\\SwitchCase_Handler.cs",

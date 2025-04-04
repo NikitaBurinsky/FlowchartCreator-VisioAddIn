@@ -13,7 +13,6 @@ namespace FlowchartGenerator
 		FG.MENU.AddInMenuForm ux;
 		CMDParser.CppCommandsParser CmdParser = new CMDParser.CppCommandsParser();
 
-
 		static string localappdata = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
 		string textBufferPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\CommandsLineTextBuffer.txt"; //temp file
 		string KnownFunctionsJsonPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\Commands.json";
@@ -24,31 +23,31 @@ namespace FlowchartGenerator
 			ActiveDocument = this.Application.ActiveDocument;
 #if !DEBUG
 			try
-            {
+			{
 #endif
-			if (!File.Exists(textBufferPath))
-			{
-				FileStream fs = File.Create(textBufferPath);
-				fs.Dispose();
-			}
-			FG_Core FlowchartGenerator = new FG_Core();
-			FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
-			StartMenuForm(FlowchartGenerator, textBufferPath);
-			string text = new StreamReader(textBufferPath).ReadToEnd();
-			CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
-				CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
-			List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
-			if (!IsExit)
-			{
-				FlowchartGenerator.GenerateDiagram(5, 8, commands);
-			}
-			Logger.ShutDownLogs();
+				if (!File.Exists(textBufferPath))
+				{
+					FileStream fs = File.Create(textBufferPath);
+					fs.Dispose();
+				}
+				FG_Core FlowchartGenerator = new FG_Core();
+				FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
+				StartMenuForm(FlowchartGenerator, textBufferPath);
+				string text = new StreamReader(textBufferPath).ReadToEnd();
+				CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
+					CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
+				List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
+				if (!IsExit)
+				{
+					FlowchartGenerator.GenerateDiagram(5, 8, commands);
+				}
+				Logger.ShutDownLogs();
 #if !DebugVersion && !DEBUG
-		}
-            catch(Exception ex) 
-            {
-                ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, ActivePage);
-            }
+			}
+			catch (Exception ex)
+			{
+				ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, ActivePage);
+			}
 #endif
 		}
 		//Shutdown

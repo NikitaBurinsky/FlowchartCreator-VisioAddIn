@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CommandsReader_v2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ebfbcc95ad90ef9ab17c54a886961e270c9c0be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52cad7e1e736ed6f92a556f5470bf12cfd3ab3dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("CommandsReader_v2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CommandsReader_v2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
