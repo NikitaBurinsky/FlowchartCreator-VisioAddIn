@@ -7,11 +7,10 @@ namespace CMDParser.Tokenizer
 {
 	internal class CmdTokenizer
 	{
-
 		Dictionary<CMD, List<Regex>> staticTokens = new Dictionary<CMD, List<Regex>>()
 		{
 			{ CMD.IF, new List<Regex>{ new Regex("\\bif\\s*\\((?:[^()]|\\((?:[^()]|\\([^()]*\\))*\\))*\\)") }},
-			{ CMD.ELSEIF, new List<Regex>{new Regex("\\belse\\s+if\\s*\\(([^)]*)\\)") }},
+			{ CMD.ELSEIF, new List<Regex>{new Regex("\\belse\\s+if\\b")}},
 			{ CMD.ELSE, new List<Regex>{new Regex("\\belse\\b(?!\\s*if\\b)") }},
 			{ CMD.SWITCH, new List<Regex>{new Regex("\\bswitch\\s*\\(([^)]*)\\)") }},
 			{ CMD.CASE, new List<Regex>{new Regex("\\bcase\\s+([^:]+):") }},
@@ -80,16 +79,17 @@ namespace CMDParser.Tokenizer
 		{
 			for (int i = 0; i < lines.Count; ++i)
 			{
-				if (lines[i].Length != 1)
+				string clearedFromSpaces = lines[i].Replace(" ", string.Empty).Replace("\t", string.Empty);
+				if (clearedFromSpaces.Length != 1 )
 				{
-					if (lines[i].StartsWith("{") || lines[i].StartsWith("}"))
+					if (clearedFromSpaces.StartsWith("{") || clearedFromSpaces.StartsWith("}"))
 					{
-						lines[i] = lines[i].Substring(1);
-						lines.Insert(i, lines[i++].Substring(0));
+						lines[i] = clearedFromSpaces.Substring(1, 1);
+						lines.Insert(i, lines[i++].Substring(1));
 					}
-					if (lines[i].EndsWith("{") || lines[i].EndsWith("}"))
+					if (clearedFromSpaces.EndsWith("{") || clearedFromSpaces.EndsWith("}"))
 					{
-						lines.Insert(i + 1, lines[i].Substring(lines[i].Length - 1));
+						lines.Insert(i + 1, clearedFromSpaces.Substring(clearedFromSpaces.Length - 1));
 						lines[i] = lines[i].Substring(0, lines[i++].Length - 1);
 					}
 				}
@@ -99,6 +99,8 @@ namespace CMDParser.Tokenizer
 
 		private Command CheckForStaticKeyToken(string line)
 		{
+			if (staticTokens[CMD.ELSEIF][0].IsMatch(line))
+				return new Command(line, CMD.ELSEIF);
 			foreach (KeyValuePair<CMD, List<Regex>> keyValue in staticTokens)
 			{
 				foreach (Regex regex in keyValue.Value)
@@ -121,7 +123,6 @@ namespace CMDParser.Tokenizer
 				else if (command.type == CMD.EOZ)
 					++ClosedGates;
 			}
-
 			return OpenedGates == ClosedGates;
 		}
 
