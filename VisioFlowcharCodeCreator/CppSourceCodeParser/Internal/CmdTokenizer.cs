@@ -32,6 +32,9 @@ namespace CMDParser.Tokenizer
 			Command currentCommand = new Command("",CMD.NONE);
 			for (int i = 0; i < lines.Count; ++i)
 			{
+				lines[i] = lines[i].Replace("\n", string.Empty).TrimStart().TrimEnd();
+				if (string.IsNullOrEmpty(lines[i]) || string.IsNullOrWhiteSpace(lines[i]) )
+					continue;
 				currentCommand = CheckForStaticKeyToken(lines[i]);
 				if (currentCommand.type == CMD.NONE)
 					currentCommand = ContainsKnownSubprocess(lines[i], knownSPTokensNames);
@@ -123,7 +126,7 @@ namespace CMDParser.Tokenizer
 				else if (command.type == CMD.EOZ)
 					++ClosedGates;
 			}
-			return OpenedGates == ClosedGates;
+			 return OpenedGates == ClosedGates;
 		}
 
 

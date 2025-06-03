@@ -83,7 +83,10 @@ namespace FlowchartGenerator
 		{
 			Visio.Document BasicShapes_Stencil = Application.Documents.OpenEx("Basic Shapes.vss", (short)Microsoft.Office.Interop.Visio.VisOpenSaveArgs.visOpenDocked);
 			Visio.Shape exepc = ActivePage.Drop(BasicShapes_Stencil.Masters.get_ItemU("Snip Same Side Corner Rectangle"), 0, 0);
-			exepc.Text = message;
+			const string ErrMessage = "AddIn disabled.\nTo start AddIn again turn on it in \"Options/AddIn/COM/Go\"";
+			MessageBox.Show("Generating fatal error\n" + ErrMessage, null,
+				MessageBoxButtons.OK, MessageBoxIcon.Error);
+			exepc.Text = ErrMessage + "\n\n" + message;
 		}
 
 		#region Код, автоматически созданный VSTO

@@ -33,13 +33,6 @@ namespace CMDParser.Preprocess
 					lines.Add(text.Substring(startSubStr, endSubStr - startSubStr));
 					startSubStr = endSubStr + 1;
 				}
-				else if (text[endSubStr] == ';')
-				{
-					if (endSubStr == startSubStr)
-						continue;
-					lines.Add(text.Substring(startSubStr, endSubStr - startSubStr + 1));
-					startSubStr = endSubStr + 1;
-				}
 			}
 			if (startSubStr < text.Length)
 				lines.Add(text.Substring(startSubStr, text.Length - startSubStr));
