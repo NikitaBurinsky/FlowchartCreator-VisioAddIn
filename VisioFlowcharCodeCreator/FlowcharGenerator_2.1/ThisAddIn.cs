@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using System.Threading;
 using Visio = Microsoft.Office.Interop.Visio;
 using FG = FlowchartGenerator;
 namespace FlowchartGenerator
 {
 	public partial class ThisAddIn
 	{
-		static bool IsExit = false;
 		FG.MENU.AddInMenuForm ux;
 		CMDParser.CppCommandsParser CmdParser = new CMDParser.CppCommandsParser();
 
@@ -32,13 +30,13 @@ namespace FlowchartGenerator
 				}
 				FG_Core FlowchartGenerator = new FG_Core();
 				FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
-				StartMenuForm(FlowchartGenerator, textBufferPath);
-				string text = new StreamReader(textBufferPath).ReadToEnd();
-				CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
-					CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
-				List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
-				if (!IsExit)
+				FG.MENU.AddInMenuForm.EMenuResult menuResult = StartMenuForm(FlowchartGenerator, textBufferPath);
+				if (menuResult != FG.MENU.AddInMenuForm.EMenuResult.Exit)
 				{
+					string text = new StreamReader(textBufferPath).ReadToEnd();
+					CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
+						CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
+					List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
 					FlowchartGenerator.GenerateDiagram(5, 8, commands);
 				}
 				Logger.ShutDownLogs();
@@ -53,30 +51,21 @@ namespace FlowchartGenerator
 		//Shutdown
 		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
 		{
-			formClosed = true;
-			ux.Close();
+			if (ux != null && !ux.IsDisposed)
+			{
+				ux.Close();
+			}
 			Logger.ShutDownLogs();
 		}
 
 		//MENU
-		static bool formClosed = false;
-		private void StartMenuForm(FG_Core FGenerator, string filepath)
+		private FG.MENU.AddInMenuForm.EMenuResult StartMenuForm(FG_Core FGenerator, string filepath)
 		{
-			ux = new FG.MENU.AddInMenuForm(filepath, KnownFunctionsJsonPath, FGenerator.FGSettings);
-			ux.Show();
-			ux.FormClosed += Form_FormClosed;
-			while (!formClosed)
+			using (ux = new FG.MENU.AddInMenuForm(filepath, KnownFunctionsJsonPath, FGenerator.FGSettings))
 			{
-				System.Windows.Forms.Application.DoEvents();
-				Thread.Sleep(10);
+				ux.ShowDialog();
+				return ux.MenuResult;
 			}
-		}
-		private static void Form_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			formClosed = true;
-			FlowchartGenerator.MENU.AddInMenuForm form = (FlowchartGenerator.MENU.AddInMenuForm)sender;
-			if (form.MenuResult == MENU.AddInMenuForm.EMenuResult.Exit)
-				IsExit = true;
 		}
 
 		private void ExceptionShape(string message, Visio.Page ActivePage)

@@ -7,7 +7,7 @@ namespace FlowchartGenerator.MENU
 	public partial class AddInMenuForm : Form
 	{	public enum EMenuResult : int { GenerateFromBuffer, GenerateFromFile, Exit};
 		
-		public EMenuResult MenuResult = EMenuResult.GenerateFromBuffer;
+		public EMenuResult MenuResult { get; private set; } = EMenuResult.Exit;
 
 		//R
         string _filepath;
@@ -26,6 +26,7 @@ namespace FlowchartGenerator.MENU
 
 		private void Btn_Generate_Click(object sender, EventArgs e)
 		{
+		MenuResult = EMenuResult.GenerateFromBuffer;
 		StreamWriter streamWriter = new StreamWriter(_filepath);
 		int gap = 300;
 		int s = 0;
