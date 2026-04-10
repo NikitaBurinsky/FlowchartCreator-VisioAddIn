@@ -41,8 +41,6 @@ namespace CMDParser
 		{
 			if (filepath == null)
 				throw new ArgumentNullException("FilePath is NULL");
-			else
-				sreader = new StreamReader(filepath, true);
 			ReadCommandsTextFile(filepath);
 			if (commands.Count < 1)
 			{
@@ -54,7 +52,6 @@ namespace CMDParser
 			return commands;
 		}
 		//Backdoors
-		private StreamReader sreader;
 		private List<Command> commands;
 		private CMD_CommandScanner cmd_scaner;
 		CmdParserOptions settings;
@@ -62,18 +59,17 @@ namespace CMDParser
 		{
 			List<String> strings = new List<string>	();
 			StringBuilder CommandsText = new StringBuilder();
-			StreamReader sreader = new StreamReader(filepath);
-			if (sreader == null)
-				return false;
-
-			String line = sreader.ReadLine();
-			while (line != null)
+			using (StreamReader sreader = new StreamReader(filepath))
 			{
-				if (line.Length > 0)
+				String line = sreader.ReadLine();
+				while (line != null)
 				{
-					CommandsText.Append(line + '\n');
+					if (line.Length > 0)
+					{
+						CommandsText.Append(line + '\n');
+					}
+					line = sreader.ReadLine();
 				}
-				line = sreader.ReadLine();
 			}
 
 			if (CommandsText.Length < 1)

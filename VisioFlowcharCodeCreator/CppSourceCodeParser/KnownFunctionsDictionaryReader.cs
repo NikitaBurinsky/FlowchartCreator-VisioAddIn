@@ -11,7 +11,11 @@ namespace CMDParser.ReadKnown
 		{
 			if (!File.Exists(jsonPath))
 				throw new Exception($"Commands file is not exists in {jsonPath} : 964");
-			string text = new StreamReader(jsonPath).ReadToEnd();
+			string text;
+			using (StreamReader streamReader = new StreamReader(jsonPath))
+			{
+				text = streamReader.ReadToEnd();
+			}
 			var deserialized = JsonConvert.DeserializeObject<Dictionary<string, CMD>>(text);
 			if (deserialized == null)
 				throw new Exception("Deserialization failed");
