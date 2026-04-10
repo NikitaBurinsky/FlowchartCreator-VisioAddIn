@@ -26,23 +26,44 @@ namespace FlowchartGenerator.MENU
 
 		private void Btn_Generate_Click(object sender, EventArgs e)
 		{
-		StreamWriter streamWriter = new StreamWriter(_filepath);
-		int gap = 300;
-		int s = 0;
-		for(; (s + gap) < textBox.TextLength; s += gap )
-		{
-		streamWriter.Write(textBox.Text.Substring(s, gap));
-		}
-		if(s >= 0)
-		streamWriter.Write(textBox.Text.Substring(s, textBox.TextLength - s));
-		streamWriter.Close();
-		Close();
+			if (string.IsNullOrWhiteSpace(textBox.Text))
+			{
+				MessageBox.Show("Пожалуйста, вставьте код функции перед генерацией.",
+					"Пустой ввод", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			StreamWriter streamWriter = new StreamWriter(_filepath);
+			int gap = 300;
+			int s = 0;
+			for (; (s + gap) < textBox.TextLength; s += gap)
+			{
+				streamWriter.Write(textBox.Text.Substring(s, gap));
+			}
+			if (s >= 0)
+				streamWriter.Write(textBox.Text.Substring(s, textBox.TextLength - s));
+			streamWriter.Close();
+			Close();
 		}
 
 		private void Btn_OpenCommandsFile_Click(object sender, EventArgs e)
 		{
-			//TEST
-			System.Diagnostics.Process.Start(_commandsJsonPath);
+			if (!File.Exists(_commandsJsonPath))
+			{
+				MessageBox.Show($"Не найден файл команд:\n{_commandsJsonPath}",
+					"Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			try
+			{
+				System.Diagnostics.Process.Start(_commandsJsonPath);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Не удалось открыть файл команд.\n{ex.Message}",
+					"Ошибка открытия файла", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void Btn_Cancel_Click(object sender, EventArgs e)

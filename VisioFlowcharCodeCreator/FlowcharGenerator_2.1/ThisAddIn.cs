@@ -34,9 +34,17 @@ namespace FlowchartGenerator
 				FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
 				StartMenuForm(FlowchartGenerator, textBufferPath);
 				string text = new StreamReader(textBufferPath).ReadToEnd();
+				if (!File.Exists(KnownFunctionsJsonPath))
+				{
+					throw new FileNotFoundException("Не найден Commands.json", KnownFunctionsJsonPath);
+				}
 				CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
 					CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
 				List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
+				if (commands == null || commands.Count == 0 || commands[0].type != CMD.StartFunc)
+				{
+					throw new InvalidOperationException("Код не распознан как функция");
+				}
 				if (!IsExit)
 				{
 					FlowchartGenerator.GenerateDiagram(5, 8, commands);
@@ -46,7 +54,7 @@ namespace FlowchartGenerator
 			}
 			catch (Exception ex)
 			{
-				ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, ActivePage);
+				ExceptionShape(GetUserFriendlyError(ex), ActivePage);
 			}
 #endif
 		}
@@ -87,6 +95,27 @@ namespace FlowchartGenerator
 			MessageBox.Show("Generating fatal error\n" + ErrMessage, null,
 				MessageBoxButtons.OK, MessageBoxIcon.Error);
 			exepc.Text = ErrMessage + "\n\n" + message;
+		}
+
+		private string GetUserFriendlyError(Exception ex)
+		{
+			if (ex is FileNotFoundException fileNotFoundException)
+			{
+				string fileName = Path.GetFileName(fileNotFoundException.FileName);
+				if (string.Equals(fileName, "Commands.json", StringComparison.OrdinalIgnoreCase))
+				{
+					return "Не найден Commands.json";
+				}
+
+				return $"Не найден файл: {fileName}";
+			}
+
+			if (ex.Message != null && ex.Message.Contains("Код не распознан как функция"))
+			{
+				return "Код не распознан как функция";
+			}
+
+			return "Не удалось построить схему. Проверьте входной код и файл команд.";
 		}
 
 		#region Код, автоматически созданный VSTO
