@@ -66,13 +66,19 @@ namespace CMDParser.TLPostProcesser
 
 		private void SetFunctionStart(List<Command> commands)
 		{
+			if (commands == null || commands.Count < 2)
+				throw new FlowchartUserException("Не удалось определить тело функции в исходном тексте.");
+
 			if (commands[0].type != CMD.SUBPROCESS && commands[1].type != CMD.SOZ)
-				throw new Exception("Start of function was not defined : 152");
+				throw new FlowchartUserException("Не удалось определить тело функции в исходном тексте.");
 			commands[0].type = CMD.StartFunc;
 		}
 
 		private void SetOrCreateFunctionEnd(List<Command> commands)
 		{
+			if (commands == null || commands.Count < 2)
+				throw new FlowchartUserException("Не удалось определить тело функции в исходном тексте.");
+
 			if (commands[commands.Count-2].type != CMD.RETURN)
 			{
 				commands.Insert(commands.Count - 1, new Command("return", CMD.RETURN));

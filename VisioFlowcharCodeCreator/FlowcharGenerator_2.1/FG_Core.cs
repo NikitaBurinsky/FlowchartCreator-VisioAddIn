@@ -37,9 +37,12 @@ namespace FlowchartGenerator
 		public int GenerateDiagram(int StartLocation_X, int StartLocation_Y, List<Command> CommandS)
 		{
 				LOG.Write("Generate diagram : Start");
-				Commands = CommandS;	
+				Commands = CommandS;
+				if (Commands == null || Commands.Count == 0)
+					throw new CMDParser.FlowchartUserException("Не удалось определить тело функции в исходном тексте.");
+
 				if (Commands[0].type != CMD.StartFunc)
-					return -1;
+					throw new CMDParser.FlowchartUserException("Не удалось определить начало функции в исходном тексте.");
 				Vector2D CurLoc = new Vector2D(StartLocation_X, StartLocation_Y);
 				int i;
 				CmdNode StartNode = Diagram.CreateCmdNode(Commands[0], CurLoc);
