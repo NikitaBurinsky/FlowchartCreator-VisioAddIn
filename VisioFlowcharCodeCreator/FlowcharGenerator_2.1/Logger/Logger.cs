@@ -6,33 +6,32 @@ namespace FlowchartGenerator
 {
 	internal class Logger
 	{ 
-		StreamWriter FileStream;
+		string LogFilePath;
 		static List<Logger> ExistLoggers = new List<Logger>();
 		public static void ShutDownLogs()
 		{
-			foreach(Logger loger in ExistLoggers)
-			{
-				loger.FileStream.Close();
-			}
+			ExistLoggers.Clear();
 		}
         public Logger(string LogObjectName, string LogFolder = null) // Lenovo
         {
 			if (LogFolder == null)
 				LogFolder = $@"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)}\FlowchartCreatorAddIn" + @"\FG_LOGS";
 
-			LogFolder = LogFolder + @"\" + LogObjectName + "_LOG.txt";
-			FileStream = new StreamWriter(LogFolder, false);
-			if(FileStream == null)
+			LogFilePath = LogFolder + @"\" + LogObjectName + "_LOG.txt";
+			Directory.CreateDirectory(Path.GetDirectoryName(LogFilePath));
+			if (!File.Exists(LogFilePath))
 			{
-				throw new Exception($"Cannot create log file in {LogFolder}!!!");
+				using (new StreamWriter(LogFilePath, false)) { }
 			}
 			ExistLoggers.Add(this);
 			this.Write($"{DateTime.Now} : {LogObjectName} : Construct : Success");
 		}
 		public void Write(string message, int index = 0)
 		{
-			FileStream.WriteLine(message);
-			FileStream.Flush();
+			using (StreamWriter streamWriter = new StreamWriter(LogFilePath, true))
+			{
+				streamWriter.WriteLine(message);
+			}
 		}
 
 

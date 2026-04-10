@@ -14,6 +14,7 @@ namespace FlowchartGenerator
 		CMDParser.CppCommandsParser CmdParser = new CMDParser.CppCommandsParser();
 
 		static string localappdata = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+		string appDataBaseDirectory = $@"{localappdata}\FlowchartCreatorAddIn";
 		string textBufferPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\CommandsLineTextBuffer.txt"; //temp file
 		string KnownFunctionsJsonPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\Commands.json";
 		private void ThisAddIn_Startup(object sender, System.EventArgs e)
@@ -25,15 +26,20 @@ namespace FlowchartGenerator
 			try
 			{
 #endif
+				Directory.CreateDirectory(appDataBaseDirectory);
 				if (!File.Exists(textBufferPath))
 				{
-					FileStream fs = File.Create(textBufferPath);
-					fs.Dispose();
+					using (FileStream fs = File.Create(textBufferPath)) { }
 				}
+				EnsureCommandsJsonExists();
 				FG_Core FlowchartGenerator = new FG_Core();
 				FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
 				StartMenuForm(FlowchartGenerator, textBufferPath);
-				string text = new StreamReader(textBufferPath).ReadToEnd();
+				string text;
+				using (StreamReader streamReader = new StreamReader(textBufferPath))
+				{
+					text = streamReader.ReadToEnd();
+				}
 				CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
 					CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
 				List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
@@ -49,6 +55,25 @@ namespace FlowchartGenerator
 				ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, ActivePage);
 			}
 #endif
+		}
+
+		private void EnsureCommandsJsonExists()
+		{
+			if (File.Exists(KnownFunctionsJsonPath))
+				return;
+
+			const string defaultCommandsJson = "{}";
+			using (StreamWriter streamWriter = new StreamWriter(KnownFunctionsJsonPath, false))
+			{
+				streamWriter.Write(defaultCommandsJson);
+			}
+
+			MessageBox.Show(
+				$"Файл команд создан:\n{KnownFunctionsJsonPath}\n\n" +
+				"Это сценарий первого запуска. Откройте файл и заполните команды в формате JSON, затем повторите генерацию.",
+				"Flowchart Creator AddIn",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information);
 		}
 		//Shutdown
 		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

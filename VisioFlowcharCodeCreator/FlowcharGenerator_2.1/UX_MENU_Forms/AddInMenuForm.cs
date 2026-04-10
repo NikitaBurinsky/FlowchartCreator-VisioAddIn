@@ -26,17 +26,18 @@ namespace FlowchartGenerator.MENU
 
 		private void Btn_Generate_Click(object sender, EventArgs e)
 		{
-		StreamWriter streamWriter = new StreamWriter(_filepath);
-		int gap = 300;
-		int s = 0;
-		for(; (s + gap) < textBox.TextLength; s += gap )
-		{
-		streamWriter.Write(textBox.Text.Substring(s, gap));
-		}
-		if(s >= 0)
-		streamWriter.Write(textBox.Text.Substring(s, textBox.TextLength - s));
-		streamWriter.Close();
-		Close();
+			using (StreamWriter streamWriter = new StreamWriter(_filepath))
+			{
+				int gap = 300;
+				int s = 0;
+				for (; (s + gap) < textBox.TextLength; s += gap)
+				{
+					streamWriter.Write(textBox.Text.Substring(s, gap));
+				}
+				if (s >= 0)
+					streamWriter.Write(textBox.Text.Substring(s, textBox.TextLength - s));
+			}
+			Close();
 		}
 
 		private void Btn_OpenCommandsFile_Click(object sender, EventArgs e)
