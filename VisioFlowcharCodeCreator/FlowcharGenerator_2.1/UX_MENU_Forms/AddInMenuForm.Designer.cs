@@ -53,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.textBox.Location = new System.Drawing.Point(3, 3);
-			this.textBox.MaxLength = 64000;
+			this.textBox.MaxLength = 0;
 			this.textBox.Multiline = true;
 			this.textBox.Name = "textBox";
 			this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
