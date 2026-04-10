@@ -117,7 +117,13 @@ namespace CMDParser.TLPostProcesser
 			}
 			private void HandleCasesInSwitch(int SwitchIndex, List<Command> commands)
 			{
-				int SwitchEOZ = findEOZforSOZ(SwitchIndex + 1, commands);
+				int switchSOZ = SwitchIndex + 1;
+				if (switchSOZ < 0 || switchSOZ >= commands.Count)
+					throw new Exception($"Невалидный индекс SOZ для switch: {switchSOZ}. Количество токенов: {commands.Count}.");
+				if (commands[switchSOZ].type != CMD.SOZ)
+					throw new Exception($"После switch ожидался SOZ, но найден {commands[switchSOZ].type} на индексе {switchSOZ}.");
+
+				int SwitchEOZ = findEOZforSOZ(switchSOZ, commands);
 				for(int i = SwitchEOZ - 1; i > SwitchIndex ; --i)
 				{
 					if (commands[i].type == CMD.CASE || commands[i].type == CMD.DEFAULT_SWITCH)
@@ -137,17 +143,24 @@ namespace CMDParser.TLPostProcesser
 
 			public int findEOZforSOZ(int SOZ, List<Command> commands)
 			{
-				int OpenedGates = 0, s;
-				for(s = SOZ; OpenedGates > 0 && s < commands.Count; ++s)
+				if (SOZ < 0 || SOZ >= commands.Count)
+					throw new Exception($"Индекс SOZ вне границ списка команд: {SOZ}. Количество токенов: {commands.Count}.");
+				if (commands[SOZ].type != CMD.SOZ)
+					throw new Exception($"Ожидался SOZ на индексе {SOZ}, но найден {commands[SOZ].type}.");
+
+				int OpenedGates = 1;
+				for (int s = SOZ + 1; s < commands.Count; ++s)
 				{
 					if (commands[s].type == CMD.SOZ)
 						++OpenedGates;
-					if (commands[s].type == CMD.EOZ)
+					else if (commands[s].type == CMD.EOZ)
 						--OpenedGates;
+
+					if (OpenedGates == 0)
+						return s;
 				}
-				if (OpenedGates != 0)
-					throw new Exception("EOZ не был найден : 1984");
-				return s - 1 ;
+
+				throw new Exception($"EOZ не найден для SOZ на индексе {SOZ}. Последний проверенный токен: индекс {commands.Count - 1}, тип {commands[commands.Count - 1].type}.");
 			}
 			public bool IsOpeningZone(Command command) => openingZoneCommands.Contains(command.type);
 			public bool IsOpeningZone(CMD type) => openingZoneCommands.Contains(type);
