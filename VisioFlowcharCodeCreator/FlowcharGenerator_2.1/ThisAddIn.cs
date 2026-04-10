@@ -34,12 +34,19 @@ namespace FlowchartGenerator
 				FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
 				StartMenuForm(FlowchartGenerator, textBufferPath);
 				string text = new StreamReader(textBufferPath).ReadToEnd();
-				CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
-					CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
-				List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
-				if (!IsExit)
+				try
 				{
-					FlowchartGenerator.GenerateDiagram(5, 8, commands);
+					CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
+						CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
+					List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
+					if (!IsExit)
+					{
+						FlowchartGenerator.GenerateDiagram(5, 8, commands);
+					}
+				}
+				catch (CMDParser.FlowchartUserException ex)
+				{
+					ShowUserFriendlyError(ex.Message);
 				}
 				Logger.ShutDownLogs();
 #if !DebugVersion && !DEBUG
@@ -87,6 +94,12 @@ namespace FlowchartGenerator
 			MessageBox.Show("Generating fatal error\n" + ErrMessage, null,
 				MessageBoxButtons.OK, MessageBoxIcon.Error);
 			exepc.Text = ErrMessage + "\n\n" + message;
+		}
+
+		private void ShowUserFriendlyError(string message)
+		{
+			MessageBox.Show(message, "Не удалось построить блок-схему",
+				MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 		#region Код, автоматически созданный VSTO
