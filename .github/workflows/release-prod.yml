@@ -37,7 +37,7 @@ jobs:
         run: nuget restore VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln
 
       - name: Build Solution (Release)
-        run: msbuild VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln /p:Configuration=Release /p:Platform="Any CPU" /p:SignManifests=false
+        run: msbuild VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln /p:Configuration=Release /p:Platform="Any CPU"
 
       - name: Install Inno Setup
         run: choco install innosetup -y
