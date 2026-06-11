@@ -1,0 +1,53 @@
+name: Production Release (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 3.4.0)'
+        required: true
+        default: '3.4.0'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish Release
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      - name: Restore NuGet Packages
+        run: nuget restore VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln
+
+      - name: Build Solution (Release)
+        run: msbuild VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln /p:Configuration=Release /p:Platform="Any CPU" /p:SignManifests=false
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Compile Installer (Inno Setup)
+        run: |
+          $VERSION = "${{ github.event.inputs.version }}"
+          Write-Host "Compiling release installer with version: $VERSION"
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DAppVersion="$VERSION" installer.iss
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: Release v${{ github.event.inputs.version }}
+          files: Output/VisioFlowchartCreatorSetup.exe
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

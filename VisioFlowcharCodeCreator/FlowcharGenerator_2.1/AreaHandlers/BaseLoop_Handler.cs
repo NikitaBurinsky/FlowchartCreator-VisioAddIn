@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +43,10 @@ namespace FlowchartGenerator.AreaHandlers
 				EndLoopText = Commands[EOZ].text;
 			CmdNode EndLoop = CreateCmdNode(EndLoopText, CMD.END_LOOP, CurNodeLoc);
 			Diagram.ConnectCmdShapesBase(ToEndNode, EndLoop);
+			
+			// Visual loop back connection from the left of EndLoop back to the StartLoopNode
+			Diagram.ConnectCmdShapesBase(EndLoop.CreateFromCon(ConType.Left), StartLoopNode);
+
 			OutputNodes.Add(new From_Connection(EndLoop, ConType.Bottom));
 			
 			RECalculateAreaSizeForce();

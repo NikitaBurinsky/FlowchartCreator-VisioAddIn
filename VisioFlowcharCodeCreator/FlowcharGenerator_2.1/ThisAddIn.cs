@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -16,24 +16,77 @@ namespace FlowchartGenerator
 		string KnownFunctionsJsonPath = $@"{localappdata}\FlowchartCreatorAddIn" + "\\Commands.json";
 		private void ThisAddIn_Startup(object sender, System.EventArgs e)
 		{
-			Visio.Document ActiveDocument = this.Application.Documents.Add("");
-			Visio.Page ActivePage = this.Application.ActivePage;
-			ActiveDocument = this.Application.ActiveDocument;
+			try
+			{
+				if (!File.Exists(textBufferPath))
+				{
+					string targetDir = Path.GetDirectoryName(textBufferPath);
+					if (!Directory.Exists(targetDir))
+					{
+						Directory.CreateDirectory(targetDir);
+					}
+					FileStream fs = File.Create(textBufferPath);
+					fs.Dispose();
+				}
+				string jsonDir = Path.GetDirectoryName(KnownFunctionsJsonPath);
+				if (!Directory.Exists(jsonDir))
+				{
+					Directory.CreateDirectory(jsonDir);
+				}
+				if (!File.Exists(KnownFunctionsJsonPath))
+				{
+					string sourceJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Commands.json");
+					if (File.Exists(sourceJson))
+					{
+						File.Copy(sourceJson, KnownFunctionsJsonPath);
+					}
+					else
+					{
+						string defaultJson = @"{
+  ""printf"": ""OUTPUT"",
+  ""printf_s"": ""OUTPUT"",
+  ""cout"": ""OUTPUT"",
+  ""fprintf"": ""OUTPUT"",
+  ""fprintf_s"": ""OUTPUT"",
+  ""putchar"": ""OUTPUT"",
+  ""putch"": ""OUTPUT"",
+  ""scanf_s"": ""INPUT"",
+  ""scanf"": ""INPUT"",
+  ""getchar"": ""INPUT"",
+  ""getch"": ""INPUT"",
+  ""cin"": ""INPUT"",
+  ""fin"": ""INPUT""
+}";
+						File.WriteAllText(KnownFunctionsJsonPath, defaultJson);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error initializing Flowchart Generator Add-In:\n" + ex.Message, "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
+		{
+			return new FlowchartRibbon(this);
+		}
+
+		public void RunGenerator()
+		{
+			Visio.Document newDocument = this.Application.Documents.Add("");
+			Visio.Page activePage = this.Application.ActivePage;
+
 #if !DEBUG
 			try
 			{
 #endif
-				if (!File.Exists(textBufferPath))
-				{
-					FileStream fs = File.Create(textBufferPath);
-					fs.Dispose();
-				}
 				FG_Core FlowchartGenerator = new FG_Core();
-				FlowchartGenerator.InitialiseSystems(this.Application, ActivePage, textBufferPath);
+				FlowchartGenerator.InitialiseSystems(this.Application, activePage, textBufferPath);
 				FG.MENU.AddInMenuForm.EMenuResult menuResult = StartMenuForm(FlowchartGenerator, textBufferPath);
 				if (menuResult != FG.MENU.AddInMenuForm.EMenuResult.Exit)
 				{
-					string text = new StreamReader(textBufferPath).ReadToEnd();
+					string text = File.ReadAllText(textBufferPath);
 					CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
 						CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
 					List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
@@ -44,7 +97,7 @@ namespace FlowchartGenerator
 			}
 			catch (Exception ex)
 			{
-				ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, ActivePage);
+				ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, activePage);
 			}
 #endif
 		}

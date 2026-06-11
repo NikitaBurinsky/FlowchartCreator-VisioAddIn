@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="17.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--
     This section defines project-level properties.
@@ -232,6 +232,8 @@
     <Compile Include="Shapes\ShapeMaster.cs" />
     <Compile Include="SubSystems\StyleserSystem.cs" />
     <Compile Include="SubSystems\SubSystem_Base.cs" />
+    <Compile Include="FlowchartRibbon.cs" />
+    <EmbeddedResource Include="FlowchartRibbon.xml" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>

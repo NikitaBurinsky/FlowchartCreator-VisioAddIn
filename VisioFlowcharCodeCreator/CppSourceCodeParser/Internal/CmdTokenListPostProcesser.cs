@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace CMDParser.TLPostProcesser
@@ -45,9 +45,8 @@ namespace CMDParser.TLPostProcesser
 						continue;
 					}	
 				}
-				else
-					CombinedCommands = 1;
-					++i;
+				CombinedCommands = 1;
+				++i;
 			}
 		}
 
@@ -66,7 +65,7 @@ namespace CMDParser.TLPostProcesser
 
 		private void SetFunctionStart(List<Command> commands)
 		{
-			if (commands[0].type != CMD.SUBPROCESS && commands[1].type != CMD.SOZ)
+			if (commands[0].type != CMD.SUBPROCESS || commands[1].type != CMD.SOZ)
 				throw new Exception("Start of function was not defined : 152");
 			commands[0].type = CMD.StartFunc;
 		}

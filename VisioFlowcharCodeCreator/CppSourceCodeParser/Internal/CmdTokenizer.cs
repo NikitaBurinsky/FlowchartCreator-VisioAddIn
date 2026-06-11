@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -82,22 +82,61 @@ namespace CMDParser.Tokenizer
 		{
 			for (int i = 0; i < lines.Count; ++i)
 			{
-				string clearedFromSpaces = lines[i].Replace(" ", string.Empty).Replace("\t", string.Empty);
-				if (clearedFromSpaces.Length != 1 )
+				string line = lines[i];
+				string trimmed = line.Trim();
+				if (trimmed == "{" || trimmed == "}")
 				{
-					if (clearedFromSpaces.StartsWith("{") || clearedFromSpaces.StartsWith("}"))
+					continue;
+				}
+
+				List<string> subLines = new List<string>();
+				System.Text.StringBuilder currentLine = new System.Text.StringBuilder();
+				bool inString = false;
+				bool inChar = false;
+				for (int j = 0; j < line.Length; ++j)
+				{
+					char c = line[j];
+					if (c == '"' && (j == 0 || line[j - 1] != '\\'))
 					{
-						lines[i] = clearedFromSpaces.Substring(1, 1);
-						lines.Insert(i, lines[i++].Substring(1));
+						inString = !inString;
+						currentLine.Append(c);
 					}
-					if (clearedFromSpaces.EndsWith("{") || clearedFromSpaces.EndsWith("}"))
+					else if (c == '\'' && (j == 0 || line[j - 1] != '\\'))
 					{
-						lines.Insert(i + 1, clearedFromSpaces.Substring(clearedFromSpaces.Length - 1));
-						lines[i] = lines[i].Substring(0, lines[i++].Length - 1);
+						inChar = !inChar;
+						currentLine.Append(c);
+					}
+					else if (!inString && !inChar && (c == '{' || c == '}'))
+					{
+						string before = currentLine.ToString().Trim();
+						if (before.Length > 0)
+						{
+							subLines.Add(before);
+						}
+						subLines.Add(c.ToString());
+						currentLine.Clear();
+					}
+					else
+					{
+						currentLine.Append(c);
 					}
 				}
+				string after = currentLine.ToString().Trim();
+				if (after.Length > 0)
+				{
+					subLines.Add(after);
+				}
+
+				if (subLines.Count > 1)
+				{
+					lines[i] = subLines[0];
+					for (int k = 1; k < subLines.Count; ++k)
+					{
+						lines.Insert(i + k, subLines[k]);
+					}
+					i += subLines.Count - 1;
+				}
 			}
-			return;
 		}
 
 		private Command CheckForStaticKeyToken(string line)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,8 +67,10 @@ namespace CMDParser.Preprocess
 
 		private string ClearSpaceSymbols()
 		{
-			Regex SpaceSymbols = new Regex("[\t\r\f\v]");
-			text = SpaceSymbols.Replace(text, string.Empty);
+			text = text.Replace("\t", " ");
+			text = text.Replace("\r", string.Empty);
+			text = text.Replace("\f", " ");
+			text = text.Replace("\v", " ");
 			return text;
 		}
 	}

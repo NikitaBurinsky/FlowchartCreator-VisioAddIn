@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="OnRibbonLoad">
+  <ribbon>
+    <tabs>
+      <tab id="tabFlowchartCreator" label="Flowchart Creator">
+        <group id="grpFlowchart" label="Flowchart Generator">
+          <button id="btnGenerate" label="Create Flowchart" size="large" imageMso="ShapesMoreShapes" onAction="OnGenerateClick" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
