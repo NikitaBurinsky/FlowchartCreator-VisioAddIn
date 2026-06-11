@@ -282,4 +282,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <!-- Bypasses MSBuild VSTO hosting assembly missing error in CI/CD runner environments -->
+  <Target Name="VerifyClickOnceSigningSettings" />
 </Project>
