@@ -94,3 +94,82 @@ begin
   end else
     Result := True;
 end;
+
+function IsProcessRunning(FileName: string): Boolean;
+var
+  FSW: Variant;
+  FSL: Variant;
+  FCol: Variant;
+begin
+  Result := False;
+  try
+    FSW := CreateOleObject('WbemScripting.SWbemLocator');
+    FSL := FSW.ConnectServer('.', 'root\CIMV2');
+    FCol := FSL.ExecQuery(Format('SELECT * FROM Win32_Process WHERE Name = ''%s''', [FileName]));
+    Result := (FCol.Count > 0);
+  except
+    // Fallback if WMI fails
+  end;
+end;
+
+function RemoveQuotes(const S: string): string;
+begin
+  Result := S;
+  if (Length(Result) > 1) and (Result[1] = '"') and (Result[Length(Result)] = '"') then
+  begin
+    Result := Copy(Result, 2, Length(Result) - 2);
+  end;
+end;
+
+function GetUninstallString: string;
+var
+  s: string;
+begin
+  Result := '';
+  if RegQueryStringValue(HKCU, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\{D375F11F-4328-403B-B06A-8A469FFB895C}_is1', 'UninstallString', s) then
+    Result := s;
+end;
+
+function InitializeSetup: Boolean;
+var
+  UninstallString: string;
+  ResultCode: Integer;
+begin
+  Result := True;
+  
+  // Check if Visio is running
+  while IsProcessRunning('visio.exe') do
+  begin
+    if MsgBox('Microsoft Visio is currently running.' #13#10 #13#10 'Please close all Visio windows before installing this Add-In to avoid file locking, then click Retry.' #13#10 'Click Cancel to exit the installer.', mbConfirmation, MB_RETRYCANCEL) = IDCANCEL then
+    begin
+      Result := False;
+      Exit;
+    end;
+  end;
+  
+  // Check for previous installation
+  UninstallString := GetUninstallString();
+  if UninstallString <> '' then
+  begin
+    if MsgBox('A previous version of the Add-In was detected. It must be uninstalled before installing this version.' #13#10 #13#10 'Uninstall it now?', mbConfirmation, MB_YESNO) = IDYES then
+    begin
+      UninstallString := RemoveQuotes(UninstallString);
+      if Exec(UninstallString, '/VERYSILENT /NORESTART /SUPPRESSMSGBOXES', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+      begin
+        // Wait a small moment for uninstallation to finalize files
+        Sleep(500);
+      end
+      else
+      begin
+        MsgBox('Failed to uninstall the previous version. Please uninstall it manually, then run this installer again.', mbError, MB_OK);
+        Result := False;
+      end;
+    end
+    else
+    begin
+      // User refused to uninstall previous version, abort setup
+      Result := False;
+    end;
+  end;
+end;
+
