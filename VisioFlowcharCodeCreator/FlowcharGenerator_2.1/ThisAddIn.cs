@@ -97,7 +97,7 @@ namespace FlowchartGenerator
 			}
 			catch (Exception ex)
 			{
-				ExceptionShape(ex.Message + " : " + ex.Source + " : " + ex.StackTrace + " : " + ex.TargetSite, activePage);
+				ShowErrorDialog(ex, activePage);
 			}
 #endif
 		}
@@ -121,14 +121,28 @@ namespace FlowchartGenerator
 			}
 		}
 
-		private void ExceptionShape(string message, Visio.Page ActivePage)
+		private void ShowErrorDialog(Exception ex, Visio.Page activePage)
 		{
-			Visio.Document BasicShapes_Stencil = Application.Documents.OpenEx("Basic Shapes.vss", (short)Microsoft.Office.Interop.Visio.VisOpenSaveArgs.visOpenDocked);
-			Visio.Shape exepc = ActivePage.Drop(BasicShapes_Stencil.Masters.get_ItemU("Snip Same Side Corner Rectangle"), 0, 0);
-			const string ErrMessage = "AddIn disabled.\nTo start AddIn again turn on it in \"Options/AddIn/COM/Go\"";
-			MessageBox.Show("Generating fatal error\n" + ErrMessage, null,
-				MessageBoxButtons.OK, MessageBoxIcon.Error);
-			exepc.Text = ErrMessage + "\n\n" + message;
+			string userFriendlyMessage = "При анализе кода или построении схемы произошла ошибка. Проверьте правильность синтаксиса C-кода и соответствие открывающих и закрывающих скобок.";
+			if (ex.Message.Contains("не совпадает") || ex.Message.Contains("SOZ") || ex.Message.Contains("EOZ"))
+			{
+				userFriendlyMessage = "Ошибка синтаксического анализа: Не совпадает количество открывающих '{' и закрывающих '}' фигурных скобок.";
+			}
+			else if (ex.Message.Contains("Start of function was not defined"))
+			{
+				userFriendlyMessage = "Ошибка структуры кода: Начало функции не определено. Убедитесь, что код начинается с сигнатуры функции и открывающей фигурной скобки.";
+			}
+
+			string technicalDetails = $"Исключение: {ex.GetType().FullName}\n" +
+			                           $"Сообщение: {ex.Message}\n" +
+			                           $"Источник: {ex.Source}\n" +
+			                           $"Метод: {ex.TargetSite}\n\n" +
+			                           $"Стек вызовов:\n{ex.StackTrace}";
+
+			using (var errorForm = new FlowchartGenerator.UX_MENU_Forms.ErrorForm(userFriendlyMessage, technicalDetails))
+			{
+				errorForm.ShowDialog();
+			}
 		}
 
 		#region Код, автоматически созданный VSTO

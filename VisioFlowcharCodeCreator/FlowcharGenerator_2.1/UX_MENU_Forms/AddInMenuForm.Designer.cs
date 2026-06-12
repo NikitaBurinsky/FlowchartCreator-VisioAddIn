@@ -1,4 +1,4 @@
-﻿namespace FlowchartGenerator.MENU
+namespace FlowchartGenerator.MENU
 {
 	partial class AddInMenuForm
 	{
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddInMenuForm));
-			this.textBox = new System.Windows.Forms.TextBox();
+			this.textBox = new FlowchartGenerator.UX_MENU_Forms.CodeEditor();
 			this.Generate_Btn = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.Btn_CommandsFileOpen = new System.Windows.Forms.Button();
@@ -47,21 +47,14 @@
 			// 
 			// textBox
 			// 
-			this.textBox.AcceptsTab = true;
 			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.textBox.Location = new System.Drawing.Point(3, 3);
-			this.textBox.MaxLength = 64000;
-			this.textBox.Multiline = true;
 			this.textBox.Name = "textBox";
-			this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBox.Size = new System.Drawing.Size(698, 735);
 			this.textBox.TabIndex = 1;
-			this.textBox.TabStop = false;
 			this.textBox.Text = resources.GetString("textBox.Text");
-			this.textBox.TextChanged += new System.EventHandler(this.TextCodeBuffer_TextChanged);
 			// 
 			// Generate_Btn
 			// 
@@ -201,7 +194,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox textBox;
+		private FlowchartGenerator.UX_MENU_Forms.CodeEditor textBox;
 		private System.Windows.Forms.Button Generate_Btn;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button Btn_CommandsFileOpen;

@@ -24,29 +24,6 @@ jobs:
       - name: Setup NuGet
         uses: nuget/setup-nuget@v2
         
-      - name: Install VS Office Workload
-        shell: powershell
-        run: |
-              # Находим актуальный путь установки VS на раннере
-              $vsPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
-              Write-Host "Found VS installation at: $vsPath"
-              
-              Write-Host "Installing Office Workload..."
-              # Запускаем модификацию с флагами пассивного режима
-              $process = Start-Process -FilePath "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vs_installer.exe" `
-                -ArgumentList "modify", "--installPath", "`"$vsPath`"", "--add", "Microsoft.VisualStudio.Workload.Office", "--passive", "--norestart" `
-                -PassThru -NoNewWindow
-              
-              # КРИТИЧЕСКИ ВАЖНО: Ждем завершения фонового установщика
-              Write-Host "Waiting for installer to finish (this may take a few minutes)..."
-              $process.WaitForExit()
-              
-              # Дополнительная проверка на случай, если процесс породил дочерние
-              while (Get-Process -Name "vs_installer" -ErrorAction SilentlyContinue) {
-                  Start-Sleep -Seconds 5
-              }
-              Write-Host "Office Workload installation completed."
-              
       - name: Restore NuGet Packages
         run: nuget restore VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln
 

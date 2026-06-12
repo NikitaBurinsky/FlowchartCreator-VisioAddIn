@@ -234,6 +234,12 @@
     <Compile Include="SubSystems\SubSystem_Base.cs" />
     <Compile Include="FlowchartRibbon.cs" />
     <EmbeddedResource Include="FlowchartRibbon.xml" />
+    <Compile Include="UX_MENU_Forms\CodeEditor.cs" />
+    <Compile Include="UX_MENU_Forms\ErrorForm.cs" />
+    <Compile Include="UX_MENU_Forms\ErrorForm.Designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UX_MENU_Forms\StaticCodeValidator.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>

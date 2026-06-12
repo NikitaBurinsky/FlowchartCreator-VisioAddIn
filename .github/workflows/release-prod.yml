@@ -26,18 +26,11 @@ jobs:
       - name: Setup NuGet
         uses: nuget/setup-nuget@v2
 
-      - name: Install VS Office Workload
-        run: |
-          $vsPath = & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
-          Write-Host "Found VS installation at: $vsPath"
-          Write-Host "Installing Office Workload (Microsoft.VisualStudio.Workload.Office)..."
-          Start-Process -FilePath "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" -ArgumentList "modify", "--installPath", "`"$vsPath`"", "--add", "Microsoft.VisualStudio.Workload.Office", "--passive", "--norestart" -Wait -NoNewWindow
-
       - name: Restore NuGet Packages
         run: nuget restore VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln
 
       - name: Build Solution (Release)
-        run: msbuild VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln /p:Configuration=Release /p:Platform="Any CPU"
+        run: msbuild VisioFlowcharCodeCreator/FlowcharGenerator_2.1/FlowcharGenerator_3.4.sln /p:Configuration=Release /p:Platform="Any CPU" /p:SignManifests=false
 
       - name: Install Inno Setup
         run: choco install innosetup -y
