@@ -58,6 +58,7 @@ namespace FlowchartGenerator.MENU
 			// 
 			// Generate_Btn
 			// 
+			this.Generate_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.Generate_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.Generate_Btn.Location = new System.Drawing.Point(956, 818);
 			this.Generate_Btn.Name = "Generate_Btn";
@@ -98,6 +99,7 @@ namespace FlowchartGenerator.MENU
 			// 
 			// Btn_Cancel
 			// 
+			this.Btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.Btn_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.Btn_Cancel.Location = new System.Drawing.Point(536, 823);
 			this.Btn_Cancel.Name = "Btn_Cancel";
@@ -152,6 +154,9 @@ namespace FlowchartGenerator.MENU
 			// 
 			// tableLayoutPanel1
 			// 
+			this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.tableLayoutPanel1.ColumnCount = 1;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -170,6 +175,7 @@ namespace FlowchartGenerator.MENU
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.ClientSize = new System.Drawing.Size(1269, 891);
+			this.MinimumSize = new System.Drawing.Size(1269, 891);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.numericUpDown2);
 			this.Controls.Add(this.label4);

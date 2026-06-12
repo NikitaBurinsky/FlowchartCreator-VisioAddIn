@@ -600,6 +600,11 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 	public class CFunctionExtractor
 	{
+		private static readonly HashSet<string> ReservedKeywords = new HashSet<string>(StringComparer.Ordinal)
+		{
+			"if", "for", "while", "switch", "catch", "return", "sizeof", "struct", "class", "union", "enum", "typedef", "template"
+		};
+
 		public class CFunction
 		{
 			public string Name { get; set; }
@@ -623,6 +628,8 @@ namespace FlowchartGenerator.UX_MENU_Forms
 					continue;
 
 				string funcName = match.Groups[2].Value;
+				if (ReservedKeywords.Contains(funcName))
+					continue;
 				int openBraceIndex = match.Index + match.Length - 1; // Index of '{'
 				
 				// Find matching closing brace
@@ -805,7 +812,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 		public FunctionSelectForm(List<CFunctionExtractor.CFunction> functions, bool isDarkTheme)
 		{
 			this.Text = "Выбор функции";
-			this.Size = new Size(350, 400);
+			this.Size = new Size(500, 400);
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.MaximizeBox = false;
@@ -823,7 +830,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			{
 				Text = "Выберите функцию для импорта:",
 				Location = new Point(15, 15),
-				Size = new Size(300, 20),
+				Size = new Size(460, 20),
 				ForeColor = fgColor,
 				Font = new Font("Segoe UI", 10F, FontStyle.Bold)
 			};
@@ -831,7 +838,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			lstFunctions = new ListBox
 			{
 				Location = new Point(15, 45),
-				Size = new Size(304, 250),
+				Size = new Size(454, 250),
 				BackColor = controlBgColor,
 				ForeColor = fgColor,
 				BorderStyle = BorderStyle.FixedSingle,
@@ -851,7 +858,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			btnOk = new Button
 			{
 				Text = "Выбрать",
-				Location = new Point(125, 315),
+				Location = new Point(279, 315),
 				Size = new Size(90, 30),
 				BackColor = accentColor,
 				ForeColor = Color.White,
@@ -872,7 +879,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			btnCancel = new Button
 			{
 				Text = "Отмена",
-				Location = new Point(230, 315),
+				Location = new Point(379, 315),
 				Size = new Size(90, 30),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(200, 200, 200),
 				ForeColor = fgColor,
@@ -890,7 +897,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			{
 				Text = "* Если нужной функции нет в списке, импортируйте её код вручную.",
 				Location = new Point(15, 298),
-				Size = new Size(310, 15),
+				Size = new Size(460, 15),
 				ForeColor = isDarkTheme ? Color.FromArgb(140, 140, 140) : Color.FromArgb(100, 100, 100),
 				Font = new Font("Segoe UI", 7.5F, FontStyle.Italic)
 			};

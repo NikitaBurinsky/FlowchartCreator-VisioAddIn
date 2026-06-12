@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Drawing;
 using System.Windows.Forms;
 using FlowchartGenerator.UX_MENU_Forms;
 
@@ -118,25 +119,34 @@ namespace FlowchartGenerator.MENU
 			};
 			this.Controls.Add(cmbFont);
 
-			// Open File Button
-			Button btnOpenFile = new Button();
-			btnOpenFile.Text = "Open File";
-			btnOpenFile.Location = new System.Drawing.Point(210, 472);
-			btnOpenFile.Size = new System.Drawing.Size(177, 49);
-			btnOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-			btnOpenFile.UseVisualStyleBackColor = true;
-			btnOpenFile.Click += (s, e) =>
+			// Rename Commands file open button
+			Btn_CommandsFileOpen.Text = "Настройка команд...";
+
+			// Import File Button
+			Button btnImportFile = new Button();
+			btnImportFile.Text = "Импортировать функции из файла...";
+			btnImportFile.Location = new System.Drawing.Point(536, 8);
+			btnImportFile.Size = new System.Drawing.Size(320, 28);
+			btnImportFile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+			btnImportFile.FlatStyle = FlatStyle.Flat;
+			btnImportFile.FlatAppearance.BorderSize = 1;
+			btnImportFile.FlatAppearance.BorderColor = Color.FromArgb(0, 122, 204);
+			btnImportFile.BackColor = Color.FromArgb(0, 122, 204);
+			btnImportFile.ForeColor = Color.White;
+			btnImportFile.UseVisualStyleBackColor = false;
+			btnImportFile.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+			btnImportFile.Click += (s, e) =>
 			{
 				using (OpenFileDialog ofd = new OpenFileDialog())
 				{
-					ofd.Filter = "C/C++ Files (*.c;*.cpp;*.h;*.hpp)|*.c;*.cpp;*.h;*.hpp|All Files (*.*)|*.*";
+					ofd.Filter = "C/C++/Text Files (*.c;*.cpp;*.h;*.hpp;*.txt)|*.c;*.cpp;*.h;*.hpp;*.txt|All Files (*.*)|*.*";
 					if (ofd.ShowDialog() == DialogResult.OK)
 					{
 						textBox.LoadFile(ofd.FileName);
 					}
 				}
 			};
-			this.Controls.Add(btnOpenFile);
+			this.Controls.Add(btnImportFile);
 
 			// Help/Tip Label
 			Label lblTip = new Label();
@@ -183,8 +193,10 @@ namespace FlowchartGenerator.MENU
 
 		private void Btn_OpenCommandsFile_Click(object sender, EventArgs e)
 		{
-			//TEST
-			System.Diagnostics.Process.Start(_commandsJsonPath);
+			using (var editor = new CommandsEditorForm(_commandsJsonPath, textBox.Theme == CodeEditor.ColorTheme.Dark))
+			{
+				editor.ShowDialog(this);
+			}
 		}
 
 		private void Btn_Cancel_Click(object sender, EventArgs e)

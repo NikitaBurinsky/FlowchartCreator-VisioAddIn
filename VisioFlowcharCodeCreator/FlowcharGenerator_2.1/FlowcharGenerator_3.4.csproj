@@ -116,6 +116,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -235,6 +238,7 @@
     <Compile Include="FlowchartRibbon.cs" />
     <EmbeddedResource Include="FlowchartRibbon.xml" />
     <Compile Include="UX_MENU_Forms\CodeEditor.cs" />
+    <Compile Include="UX_MENU_Forms\CommandsEditorForm.cs" />
     <Compile Include="UX_MENU_Forms\ErrorForm.cs" />
     <Compile Include="UX_MENU_Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
