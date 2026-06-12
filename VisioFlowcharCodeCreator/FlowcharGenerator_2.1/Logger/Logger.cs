@@ -1,40 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 
 namespace FlowchartGenerator
 {
 	internal class Logger
 	{ 
-		StreamWriter FileStream;
-		static List<Logger> ExistLoggers = new List<Logger>();
+		private string logFilePath;
+
 		public static void ShutDownLogs()
 		{
-			foreach(Logger loger in ExistLoggers)
-			{
-				loger.FileStream.Close();
-			}
+			// No-op since we don't keep streams open anymore
 		}
-        public Logger(string LogObjectName, string LogFolder = null) // Lenovo
-        {
+
+		public Logger(string LogObjectName, string LogFolder = null)
+		{
 			if (LogFolder == null)
 				LogFolder = $@"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)}\FlowchartCreatorAddIn" + @"\FG_LOGS";
 
-			LogFolder = LogFolder + @"\" + LogObjectName + "_LOG.txt";
-			FileStream = new StreamWriter(LogFolder, false);
-			if(FileStream == null)
+			try
 			{
-				throw new Exception($"Cannot create log file in {LogFolder}!!!");
+				if (!Directory.Exists(LogFolder))
+				{
+					Directory.CreateDirectory(LogFolder);
+				}
+				logFilePath = Path.Combine(LogFolder, LogObjectName + "_LOG.txt");
+				
+				// Overwrite / clear the log file on creation
+				File.WriteAllText(logFilePath, $"{DateTime.Now} : {LogObjectName} : Construct : Success" + Environment.NewLine);
 			}
-			ExistLoggers.Add(this);
-			this.Write($"{DateTime.Now} : {LogObjectName} : Construct : Success");
+			catch 
+			{
+				// Fail silently to prevent logger from crashing the add-in
+			}
 		}
+
 		public void Write(string message, int index = 0)
 		{
-			FileStream.WriteLine(message);
-			FileStream.Flush();
+			if (string.IsNullOrEmpty(logFilePath)) return;
+
+			try
+			{
+				File.AppendAllText(logFilePath, message + Environment.NewLine);
+			}
+			catch
+			{
+				// Fail silently
+			}
 		}
-
-
 	}
 }

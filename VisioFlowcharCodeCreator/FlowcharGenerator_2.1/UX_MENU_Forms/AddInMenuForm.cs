@@ -30,6 +30,34 @@ namespace FlowchartGenerator.MENU
         private void AddInMenuForm_Load(object sender, EventArgs e)
 		{
 			InitializeCustomSettingsControls();
+			bool isOfficeDark = IsOfficeThemeDark();
+			cmbTheme.SelectedIndex = isOfficeDark ? 1 : 0;
+			textBox.Theme = isOfficeDark ? CodeEditor.ColorTheme.Dark : CodeEditor.ColorTheme.Light;
+		}
+
+		private bool IsOfficeThemeDark()
+		{
+			try
+			{
+				using (var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Office\16.0\Common"))
+				{
+					if (key != null)
+					{
+						object val = key.GetValue("Theme");
+						if (val != null && int.TryParse(val.ToString(), out int themeVal))
+						{
+							// 3 = Dark Gray, 4 = Black
+							if (themeVal == 3 || themeVal == 4)
+								return true;
+						}
+					}
+				}
+			}
+			catch
+			{
+				// Fallback
+			}
+			return false;
 		}
 
 		private void InitializeCustomSettingsControls()
@@ -89,6 +117,35 @@ namespace FlowchartGenerator.MENU
 				textBox.EditorFontFamily = cmbFont.SelectedItem.ToString();
 			};
 			this.Controls.Add(cmbFont);
+
+			// Open File Button
+			Button btnOpenFile = new Button();
+			btnOpenFile.Text = "Open File";
+			btnOpenFile.Location = new System.Drawing.Point(210, 472);
+			btnOpenFile.Size = new System.Drawing.Size(177, 49);
+			btnOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			btnOpenFile.UseVisualStyleBackColor = true;
+			btnOpenFile.Click += (s, e) =>
+			{
+				using (OpenFileDialog ofd = new OpenFileDialog())
+				{
+					ofd.Filter = "C/C++ Files (*.c;*.cpp;*.h;*.hpp)|*.c;*.cpp;*.h;*.hpp|All Files (*.*)|*.*";
+					if (ofd.ShowDialog() == DialogResult.OK)
+					{
+						textBox.LoadFile(ofd.FileName);
+					}
+				}
+			};
+			this.Controls.Add(btnOpenFile);
+
+			// Help/Tip Label
+			Label lblTip = new Label();
+			lblTip.Text = "💡 Подсказка: Если авто-импорт файла не определил нужные функции, вы можете просто скопировать и вставить их код вручную.";
+			lblTip.Location = new System.Drawing.Point(22, 675);
+			lblTip.Size = new System.Drawing.Size(440, 40);
+			lblTip.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Italic);
+			lblTip.ForeColor = System.Drawing.Color.FromArgb(120, 120, 120);
+			this.Controls.Add(lblTip);
 		}
 
         private void TextCodeBuffer_TextChanged(object sender, EventArgs e){}

@@ -87,10 +87,42 @@ namespace FlowchartGenerator
 				if (menuResult != FG.MENU.AddInMenuForm.EMenuResult.Exit)
 				{
 					string text = File.ReadAllText(textBufferPath);
+					var functions = UX_MENU_Forms.CFunctionExtractor.ExtractFunctions(text);
 					CMDParser.CmdParseOptions parseOptions = new CMDParser.CmdParseOptions(FlowchartGenerator.FGSettings.MaxCombinedNodesOneType,
 						CMDParser.ReadKnown.KnownFunctionsDictionaryReader.DeserializeKnownFunctions(KnownFunctionsJsonPath));
-					List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
-					FlowchartGenerator.GenerateDiagram(5, 8, commands);
+
+					if (functions.Count > 0)
+					{
+						Visio.Page firstPage = activePage;
+						bool isFirst = true;
+
+						foreach (var func in functions)
+						{
+							Visio.Page pageToUse;
+							if (isFirst)
+							{
+								pageToUse = firstPage;
+								try { pageToUse.Name = GetSafePageName(func.Name); } catch { }
+								isFirst = false;
+							}
+							else
+							{
+								pageToUse = CreatePageWithUniqueName(func.Name);
+							}
+
+							List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(func.Body, parseOptions);
+
+							FG_Core pageGenerator = new FG_Core();
+							pageGenerator.FGSettings = FlowchartGenerator.FGSettings;
+							pageGenerator.InitialiseSystems(this.Application, pageToUse, textBufferPath);
+							pageGenerator.GenerateDiagram(5, 8, commands);
+						}
+					}
+					else
+					{
+						List<Command> commands = CmdParser.ParseAndTokenizeSourceCode(text, parseOptions);
+						FlowchartGenerator.GenerateDiagram(5, 8, commands);
+					}
 				}
 				Logger.ShutDownLogs();
 #if !DebugVersion && !DEBUG
@@ -158,5 +190,55 @@ namespace FlowchartGenerator
 		}
 
 		#endregion
+
+		private string GetSafePageName(string name)
+		{
+			if (string.IsNullOrEmpty(name)) return "Page";
+			
+			char[] invalidChars = new char[] { '/', '\\', '?', '*', '[', ']', ':', ';' };
+			foreach (char c in invalidChars)
+			{
+				name = name.Replace(c, '_');
+			}
+
+			if (name.Length > 30)
+			{
+				name = name.Substring(0, 30);
+			}
+			return name;
+		}
+
+		private Visio.Page CreatePageWithUniqueName(string baseName)
+		{
+			string pageName = GetSafePageName(baseName);
+			int counter = 1;
+			bool nameExists = true;
+
+			while (nameExists)
+			{
+				nameExists = false;
+				foreach (Visio.Page p in this.Application.ActiveDocument.Pages)
+				{
+					if (p.Name.Equals(pageName, StringComparison.OrdinalIgnoreCase))
+					{
+						nameExists = true;
+						pageName = $"{GetSafePageName(baseName)}_{counter}";
+						counter++;
+						break;
+					}
+				}
+			}
+
+			Visio.Page newPage = this.Application.ActiveDocument.Pages.Add();
+			try
+			{
+				newPage.Name = pageName;
+			}
+			catch
+			{
+				// Fallback
+			}
+			return newPage;
+		}
 	}
 }
