@@ -828,24 +828,23 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			lblTitle = new Label
 			{
 				Text = "Выберите функцию для импорта:",
-				Location = new Point(15, 15),
+				Location = new Point(20, 20),
 				AutoSize = true,
 				ForeColor = fgColor,
 				Font = new Font("Segoe UI", 10F, FontStyle.Bold)
 			};
 			this.Controls.Add(lblTitle);
 
-			int titleBottom = lblTitle.Location.Y + lblTitle.GetPreferredSize(new Size(460, 0)).Height;
-
 			lstFunctions = new ListBox
 			{
-				Location = new Point(15, titleBottom + 10),
-				Size = new Size(454, 230),
+				Location = new Point(20, 55),
+				Size = new Size(460, 250),
 				BackColor = controlBgColor,
 				ForeColor = fgColor,
 				BorderStyle = BorderStyle.FixedSingle,
 				Font = new Font("Consolas", 10F),
-				ItemHeight = 22
+				ItemHeight = 22,
+				IntegralHeight = false
 			};
 			this.Controls.Add(lstFunctions);
 
@@ -861,26 +860,26 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			Label lblTip = new Label
 			{
 				Text = "* Если нужной функции нет в списке, импортируйте её код вручную.",
-				Location = new Point(15, lstFunctions.Bottom + 10),
+				Location = new Point(20, lstFunctions.Bottom + 15),
 				AutoSize = true,
 				MaximumSize = new Size(460, 0),
 				ForeColor = isDarkTheme ? Color.FromArgb(140, 140, 140) : Color.FromArgb(100, 100, 100),
-				Font = new Font("Segoe UI", 7.5F, FontStyle.Italic)
+				Font = new Font("Segoe UI", 8F, FontStyle.Italic)
 			};
 			this.Controls.Add(lblTip);
 
 			int tipHeight = lblTip.GetPreferredSize(new Size(460, 0)).Height;
-			int buttonsY = lblTip.Top + Math.Max(15, tipHeight) + 12;
+			int buttonsY = lblTip.Top + Math.Max(20, tipHeight) + 15;
 
 			btnOk = new Button
 			{
 				Text = "Выбрать",
-				Location = new Point(279, buttonsY),
-				Size = new Size(90, 30),
+				Location = new Point(275, buttonsY),
+				Size = new Size(100, 35),
 				BackColor = accentColor,
 				ForeColor = Color.White,
 				FlatStyle = FlatStyle.Flat,
-				Font = new Font("Segoe UI", 9F, FontStyle.Bold)
+				Font = new Font("Segoe UI", 9.5F, FontStyle.Bold)
 			};
 			btnOk.FlatAppearance.BorderSize = 0;
 			btnOk.Click += (s, e) =>
@@ -897,12 +896,12 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			btnCancel = new Button
 			{
 				Text = "Отмена",
-				Location = new Point(379, buttonsY),
-				Size = new Size(90, 30),
+				Location = new Point(380, buttonsY),
+				Size = new Size(100, 35),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(200, 200, 200),
 				ForeColor = fgColor,
 				FlatStyle = FlatStyle.Flat,
-				Font = new Font("Segoe UI", 9F)
+				Font = new Font("Segoe UI", 9.5F)
 			};
 			btnCancel.FlatAppearance.BorderSize = 0;
 			btnCancel.Click += (s, e) =>
@@ -912,7 +911,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			};
 			this.Controls.Add(btnCancel);
 
-			this.ClientSize = new Size(500, btnCancel.Bottom + 15);
+			this.ClientSize = new Size(500, btnCancel.Bottom + 20);
 			lstFunctions.DoubleClick += (s, e) => btnOk.PerformClick();
 		}
 	}

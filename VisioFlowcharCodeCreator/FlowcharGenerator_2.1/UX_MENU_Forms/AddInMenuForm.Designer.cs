@@ -33,7 +33,7 @@ namespace FlowchartGenerator.MENU
 			this.Generate_Btn = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.Btn_CommandsFileOpen = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.RichTextBox();
 			this.Btn_Cancel = new System.Windows.Forms.Button();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -91,11 +91,13 @@ namespace FlowchartGenerator.MENU
 			// label2
 			// 
 			this.label2.BackColor = System.Drawing.SystemColors.Menu;
+			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.label2.Location = new System.Drawing.Point(20, 42);
 			this.label2.Name = "label2";
+			this.label2.ReadOnly = true;
 			this.label2.Size = new System.Drawing.Size(495, 412);
 			this.label2.TabIndex = 4;
-			this.label2.Text = resources.GetString("label2.Text");
+			this.label2.Text = "";
 			// 
 			// Btn_Cancel
 			// 
@@ -177,8 +179,8 @@ namespace FlowchartGenerator.MENU
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.ClientSize = new System.Drawing.Size(1269, 930);
-			this.MinimumSize = new System.Drawing.Size(1269, 930);
+			this.ClientSize = new System.Drawing.Size(1300, 960);
+			this.MinimumSize = new System.Drawing.Size(1300, 960);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.numericUpDown2);
 			this.Controls.Add(this.label4);
@@ -207,7 +209,7 @@ namespace FlowchartGenerator.MENU
 		private System.Windows.Forms.Button Generate_Btn;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button Btn_CommandsFileOpen;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.RichTextBox label2;
 		private System.Windows.Forms.Button Btn_Cancel;
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.NumericUpDown numericUpDown2;
