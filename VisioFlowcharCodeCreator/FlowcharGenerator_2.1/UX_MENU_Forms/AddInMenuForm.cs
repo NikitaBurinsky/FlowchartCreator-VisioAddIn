@@ -19,6 +19,10 @@ namespace FlowchartGenerator.MENU
 		private CheckBox chkAutoCloseBrackets;
 		private ComboBox cmbTheme;
 		private ComboBox cmbFont;
+		private Button btnImportFile;
+		private Label lblTheme;
+		private Label lblFont;
+		private Label lblTip;
 
         public AddInMenuForm(string filepath_, string commandspath_, SettingsSystem settings)
 		{
@@ -33,7 +37,6 @@ namespace FlowchartGenerator.MENU
 			InitializeCustomSettingsControls();
 			bool isOfficeDark = IsOfficeThemeDark();
 			cmbTheme.SelectedIndex = isOfficeDark ? 1 : 0;
-			textBox.Theme = isOfficeDark ? CodeEditor.ColorTheme.Dark : CodeEditor.ColorTheme.Light;
 		}
 
 		private bool IsOfficeThemeDark()
@@ -66,7 +69,6 @@ namespace FlowchartGenerator.MENU
 			// Word Wrap
 			chkWordWrap = new CheckBox();
 			chkWordWrap.Text = "Перенос строк";
-			chkWordWrap.Location = new System.Drawing.Point(22, 530);
 			chkWordWrap.Size = new System.Drawing.Size(200, 24);
 			chkWordWrap.Checked = textBox.WordWrap;
 			chkWordWrap.CheckedChanged += (s, e) => { textBox.WordWrap = chkWordWrap.Checked; };
@@ -75,7 +77,6 @@ namespace FlowchartGenerator.MENU
 			// Auto Close Brackets
 			chkAutoCloseBrackets = new CheckBox();
 			chkAutoCloseBrackets.Text = "Автозакрытие скобок";
-			chkAutoCloseBrackets.Location = new System.Drawing.Point(22, 560);
 			chkAutoCloseBrackets.Size = new System.Drawing.Size(200, 24);
 			chkAutoCloseBrackets.Checked = textBox.EnableAutoCloseBrackets;
 			chkAutoCloseBrackets.CheckedChanged += (s, e) => { textBox.EnableAutoCloseBrackets = chkAutoCloseBrackets.Checked; };
@@ -84,7 +85,6 @@ namespace FlowchartGenerator.MENU
 			// Theme label
 			Label lblTheme = new Label();
 			lblTheme.Text = "Тема редактора:";
-			lblTheme.Location = new System.Drawing.Point(22, 595);
 			lblTheme.Size = new System.Drawing.Size(120, 20);
 			this.Controls.Add(lblTheme);
 
@@ -93,7 +93,6 @@ namespace FlowchartGenerator.MENU
 			cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList;
 			cmbTheme.Items.AddRange(new object[] { "Светлая", "Темная" });
 			cmbTheme.SelectedIndex = 0; // Light
-			cmbTheme.Location = new System.Drawing.Point(160, 592);
 			cmbTheme.Size = new System.Drawing.Size(120, 25);
 			cmbTheme.SelectedIndexChanged += (s, e) => {
 				textBox.Theme = cmbTheme.SelectedIndex == 1 ? CodeEditor.ColorTheme.Dark : CodeEditor.ColorTheme.Light;
@@ -103,7 +102,6 @@ namespace FlowchartGenerator.MENU
 			// Font label
 			Label lblFont = new Label();
 			lblFont.Text = "Шрифт кода:";
-			lblFont.Location = new System.Drawing.Point(22, 630);
 			lblFont.Size = new System.Drawing.Size(120, 20);
 			this.Controls.Add(lblFont);
 
@@ -112,7 +110,6 @@ namespace FlowchartGenerator.MENU
 			cmbFont.DropDownStyle = ComboBoxStyle.DropDownList;
 			cmbFont.Items.AddRange(new object[] { "Consolas", "Courier New" });
 			cmbFont.SelectedIndex = 0; // Consolas
-			cmbFont.Location = new System.Drawing.Point(160, 627);
 			cmbFont.Size = new System.Drawing.Size(120, 25);
 			cmbFont.SelectedIndexChanged += (s, e) => {
 				textBox.EditorFontFamily = cmbFont.SelectedItem.ToString();
@@ -151,12 +148,45 @@ namespace FlowchartGenerator.MENU
 			// Help/Tip Label
 			Label lblTip = new Label();
 			lblTip.Text = "💡 Подсказка: Если авто-импорт файла не определил нужные функции, вы можете просто скопировать и вставить их код вручную.";
-			lblTip.Location = new System.Drawing.Point(22, 675);
 			lblTip.AutoSize = true;
 			lblTip.MaximumSize = new System.Drawing.Size(440, 0);
 			lblTip.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Italic);
 			lblTip.ForeColor = System.Drawing.Color.FromArgb(120, 120, 120);
 			this.Controls.Add(lblTip);
+
+			// Dynamic vertical positioning to avoid any overlaps or DPI clipping
+			int currentY = Btn_CommandsFileOpen.Bottom + 12;
+
+			chkWordWrap.Location = new System.Drawing.Point(22, currentY);
+			currentY = chkWordWrap.Bottom + 6;
+
+			chkAutoCloseBrackets.Location = new System.Drawing.Point(22, currentY);
+			currentY = chkAutoCloseBrackets.Bottom + 10;
+
+			lblTheme.Location = new System.Drawing.Point(22, currentY + 3);
+			cmbTheme.Location = new System.Drawing.Point(160, currentY);
+			currentY = cmbTheme.Bottom + 10;
+
+			lblFont.Location = new System.Drawing.Point(22, currentY + 3);
+			cmbFont.Location = new System.Drawing.Point(160, currentY);
+			currentY = cmbFont.Bottom + 12;
+
+			lblTip.Location = new System.Drawing.Point(22, currentY);
+			int tipHeight = lblTip.GetPreferredSize(new System.Drawing.Size(440, 0)).Height;
+			currentY = lblTip.Top + Math.Max(25, tipHeight) + 12;
+
+			label3.Location = new System.Drawing.Point(20, currentY);
+			int label3Height = label3.GetPreferredSize(new System.Drawing.Size(442, 0)).Height;
+			currentY = label3.Top + Math.Max(15, label3Height) + 4;
+
+			numericUpDown1.Location = new System.Drawing.Point(22, currentY);
+			currentY = numericUpDown1.Bottom + 12;
+
+			label4.Location = new System.Drawing.Point(20, currentY);
+			int label4Height = label4.GetPreferredSize(new System.Drawing.Size(442, 0)).Height;
+			currentY = label4.Top + Math.Max(15, label4Height) + 4;
+
+			numericUpDown2.Location = new System.Drawing.Point(22, currentY);
 		}
 
         private void TextCodeBuffer_TextChanged(object sender, EventArgs e){}

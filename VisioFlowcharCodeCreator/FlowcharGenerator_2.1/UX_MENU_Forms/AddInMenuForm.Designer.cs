@@ -177,8 +177,8 @@ namespace FlowchartGenerator.MENU
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.ClientSize = new System.Drawing.Size(1269, 891);
-			this.MinimumSize = new System.Drawing.Size(1269, 891);
+			this.ClientSize = new System.Drawing.Size(1269, 930);
+			this.MinimumSize = new System.Drawing.Size(1269, 930);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.numericUpDown2);
 			this.Controls.Add(this.label4);
