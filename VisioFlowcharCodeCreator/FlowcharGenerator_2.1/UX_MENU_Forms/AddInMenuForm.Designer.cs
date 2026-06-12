@@ -82,7 +82,7 @@ namespace FlowchartGenerator.MENU
 			this.Btn_CommandsFileOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.Btn_CommandsFileOpen.Location = new System.Drawing.Point(16, 472);
 			this.Btn_CommandsFileOpen.Name = "Btn_CommandsFileOpen";
-			this.Btn_CommandsFileOpen.Size = new System.Drawing.Size(177, 49);
+			this.Btn_CommandsFileOpen.Size = new System.Drawing.Size(220, 49);
 			this.Btn_CommandsFileOpen.TabIndex = 3;
 			this.Btn_CommandsFileOpen.Text = "Commands file";
 			this.Btn_CommandsFileOpen.UseVisualStyleBackColor = true;
@@ -138,6 +138,7 @@ namespace FlowchartGenerator.MENU
 			// label3
 			// 
 			this.label3.AutoSize = true;
+			this.label3.MaximumSize = new System.Drawing.Size(442, 0);
 			this.label3.Location = new System.Drawing.Point(20, 734);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(442, 20);
@@ -146,6 +147,8 @@ namespace FlowchartGenerator.MENU
 			// 
 			// label4
 			// 
+			this.label4.AutoSize = true;
+			this.label4.MaximumSize = new System.Drawing.Size(442, 0);
 			this.label4.Location = new System.Drawing.Point(20, 795);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(442, 51);

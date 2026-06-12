@@ -152,7 +152,8 @@ namespace FlowchartGenerator.MENU
 			Label lblTip = new Label();
 			lblTip.Text = "💡 Подсказка: Если авто-импорт файла не определил нужные функции, вы можете просто скопировать и вставить их код вручную.";
 			lblTip.Location = new System.Drawing.Point(22, 675);
-			lblTip.Size = new System.Drawing.Size(440, 40);
+			lblTip.AutoSize = true;
+			lblTip.MaximumSize = new System.Drawing.Size(440, 0);
 			lblTip.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Italic);
 			lblTip.ForeColor = System.Drawing.Color.FromArgb(120, 120, 120);
 			this.Controls.Add(lblTip);

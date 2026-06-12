@@ -812,7 +812,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 		public FunctionSelectForm(List<CFunctionExtractor.CFunction> functions, bool isDarkTheme)
 		{
 			this.Text = "Выбор функции";
-			this.Size = new Size(500, 400);
+			this.Size = new Size(500, 440);
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.MaximizeBox = false;
@@ -838,7 +838,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			lstFunctions = new ListBox
 			{
 				Location = new Point(15, 45),
-				Size = new Size(454, 250),
+				Size = new Size(454, 270),
 				BackColor = controlBgColor,
 				ForeColor = fgColor,
 				BorderStyle = BorderStyle.FixedSingle,
@@ -858,7 +858,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			btnOk = new Button
 			{
 				Text = "Выбрать",
-				Location = new Point(279, 315),
+				Location = new Point(279, 355),
 				Size = new Size(90, 30),
 				BackColor = accentColor,
 				ForeColor = Color.White,
@@ -879,7 +879,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			btnCancel = new Button
 			{
 				Text = "Отмена",
-				Location = new Point(379, 315),
+				Location = new Point(379, 355),
 				Size = new Size(90, 30),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(200, 200, 200),
 				ForeColor = fgColor,
@@ -896,8 +896,9 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			Label lblTip = new Label
 			{
 				Text = "* Если нужной функции нет в списке, импортируйте её код вручную.",
-				Location = new Point(15, 298),
-				Size = new Size(460, 15),
+				Location = new Point(15, 325),
+				AutoSize = true,
+				MaximumSize = new Size(460, 0),
 				ForeColor = isDarkTheme ? Color.FromArgb(140, 140, 140) : Color.FromArgb(100, 100, 100),
 				Font = new Font("Segoe UI", 7.5F, FontStyle.Italic)
 			};
