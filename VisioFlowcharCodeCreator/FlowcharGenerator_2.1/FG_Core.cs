@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Visio = Microsoft.Office.Interop.Visio;
@@ -55,6 +55,16 @@ namespace FlowchartGenerator
 				Styliser.Style_Arrows();
 				Styliser.Style_Shapes();
 				LOG.Write("Stylise : Success");
+
+				try
+				{
+					((dynamic)ActivePage).ResizeToFit();
+				}
+				catch (Exception ex)
+				{
+					LOG.Write("ResizeToFit failed: " + ex.Message);
+				}
+
 			return 1;
 		}
 	}

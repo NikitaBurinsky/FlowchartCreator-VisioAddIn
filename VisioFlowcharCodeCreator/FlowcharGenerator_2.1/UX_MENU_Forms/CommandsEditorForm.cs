@@ -17,11 +17,13 @@ namespace FlowchartGenerator.UX_MENU_Forms
 		private Label lblTitle;
 		private string jsonPath;
 		private bool isDarkTheme;
+		private bool isRussian;
 
-		public CommandsEditorForm(string path, bool darkTheme)
+		public CommandsEditorForm(string path, bool darkTheme, bool isRussian)
 		{
 			this.jsonPath = path;
 			this.isDarkTheme = darkTheme;
+			this.isRussian = isRussian;
 
 			InitializeComponent();
 			LoadData();
@@ -29,7 +31,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 		private void InitializeComponent()
 		{
-			this.Text = "Настройка команд и функций";
+			this.Text = isRussian ? "Настройка команд и функций" : "Configure Commands & Macros";
 			this.Size = new Size(500, 550);
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
@@ -46,7 +48,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			lblTitle = new Label
 			{
-				Text = "Список сопоставления функций типам блоков в Visio:",
+				Text = isRussian ? "Список сопоставления функций типам блоков в Visio:" : "Mapping rules of functions to Visio block types:",
 				Location = new Point(15, 15),
 				Size = new Size(460, 20),
 				ForeColor = fgColor,
@@ -83,7 +85,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			var txtCol = new DataGridViewTextBoxColumn
 			{
 				Name = "FuncName",
-				HeaderText = "Функция / Макрос",
+				HeaderText = isRussian ? "Функция / Макрос" : "Function / Macro",
 				SortMode = DataGridViewColumnSortMode.NotSortable
 			};
 			dgvCommands.Columns.Add(txtCol);
@@ -91,7 +93,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			var cmbCol = new DataGridViewComboBoxColumn
 			{
 				Name = "BlockType",
-				HeaderText = "Тип блока в Visio",
+				HeaderText = isRussian ? "Тип блока в Visio" : "Visio Block Type",
 				SortMode = DataGridViewColumnSortMode.NotSortable
 			};
 			cmbCol.Items.AddRange("INPUT", "OUTPUT", "SUBPROCESS", "PROCESS");
@@ -100,7 +102,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			// Buttons
 			btnAdd = new Button
 			{
-				Text = "Добавить",
+				Text = isRussian ? "Добавить" : "Add",
 				Location = new Point(15, 435),
 				Size = new Size(95, 30),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(220, 220, 220),
@@ -112,7 +114,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			btnDelete = new Button
 			{
-				Text = "Удалить",
+				Text = isRussian ? "Удалить" : "Delete",
 				Location = new Point(120, 435),
 				Size = new Size(95, 30),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(220, 220, 220),
@@ -124,7 +126,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			btnSave = new Button
 			{
-				Text = "Сохранить",
+				Text = isRussian ? "Сохранить" : "Save",
 				Location = new Point(274, 435),
 				Size = new Size(95, 30),
 				BackColor = accentColor,
@@ -137,7 +139,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			btnCancel = new Button
 			{
-				Text = "Отмена",
+				Text = isRussian ? "Отмена" : "Cancel",
 				Location = new Point(374, 435),
 				Size = new Size(95, 30),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(200, 200, 200),
@@ -174,7 +176,9 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Ошибка чтения Commands.json:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				string msg = isRussian ? "Ошибка чтения Commands.json:\n" : "Error reading Commands.json:\n";
+				string title = isRussian ? "Ошибка" : "Error";
+				MessageBox.Show(msg + ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -214,13 +218,19 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 				if (string.IsNullOrEmpty(key))
 				{
-					MessageBox.Show($"Строка {i + 1}: Имя функции не может быть пустым.", "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					string emptyMsg = isRussian ? $"Строка {i + 1}: Имя функции не может быть пустым." : $"Row {i + 1}: Function name cannot be empty.";
+					string title = isRussian ? "Ошибка валидации" : "Validation Error";
+					MessageBox.Show(emptyMsg, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					return;
 				}
 
 				if (dict.ContainsKey(key))
 				{
-					MessageBox.Show($"Дублирующееся правило для функции '{key}'. Каждая функция может иметь только один тип блока.", "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					string dupMsg = isRussian ? 
+						$"Дублирующееся правило для функции '{key}'. Каждая функция может иметь только один тип блока." : 
+						$"Duplicate mapping for function '{key}'. Each function can have only one block type.";
+					string title = isRussian ? "Ошибка валидации" : "Validation Error";
+					MessageBox.Show(dupMsg, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					return;
 				}
 
@@ -231,13 +241,17 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			{
 				string json = JsonConvert.SerializeObject(dict, Formatting.Indented);
 				File.WriteAllText(jsonPath, json);
-				MessageBox.Show("Настройки команд успешно сохранены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				string successMsg = isRussian ? "Настройки команд успешно сохранены!" : "Commands settings saved successfully!";
+				string title = isRussian ? "Успех" : "Success";
+				MessageBox.Show(successMsg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				this.DialogResult = DialogResult.OK;
 				this.Close();
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Ошибка сохранения файла:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				string errMsg = isRussian ? "Ошибка сохранения файла:\n" : "Error saving file:\n";
+				string title = isRussian ? "Ошибка" : "Error";
+				MessageBox.Show(errMsg + ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 	}

@@ -49,6 +49,8 @@ namespace FlowchartGenerator.UX_MENU_Forms
 			set { currentTheme = value; ApplyTheme(); }
 		}
 
+		public bool IsRussianLanguage { get; set; } = true;
+
 		public string EditorFontFamily
 		{
 			get { return richTextBox.Font.FontFamily.Name; }
@@ -383,7 +385,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 				var functions = CFunctionExtractor.ExtractFunctions(content);
 				if (functions.Count > 1)
 				{
-					using (var selector = new FunctionSelectForm(functions, currentTheme == ColorTheme.Dark))
+					using (var selector = new FunctionSelectForm(functions, currentTheme == ColorTheme.Dark, IsRussianLanguage))
 					{
 						if (selector.ShowDialog(this) == DialogResult.OK && selector.SelectedFunction != null)
 						{
@@ -809,9 +811,9 @@ namespace FlowchartGenerator.UX_MENU_Forms
 		
 		public CFunctionExtractor.CFunction SelectedFunction { get; private set; }
 
-		public FunctionSelectForm(List<CFunctionExtractor.CFunction> functions, bool isDarkTheme)
+		public FunctionSelectForm(List<CFunctionExtractor.CFunction> functions, bool isDarkTheme, bool isRussian)
 		{
-			this.Text = "Выбор функции";
+			this.Text = isRussian ? "Выбор функции" : "Select Function";
 			this.FormBorderStyle = FormBorderStyle.FixedDialog;
 			this.StartPosition = FormStartPosition.CenterParent;
 			this.MaximizeBox = false;
@@ -827,7 +829,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			lblTitle = new Label
 			{
-				Text = "Выберите функцию для импорта:",
+				Text = isRussian ? "Выберите функцию для импорта:" : "Select a function to import:",
 				Location = new Point(20, 20),
 				AutoSize = true,
 				ForeColor = fgColor,
@@ -859,7 +861,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			Label lblTip = new Label
 			{
-				Text = "* Если нужной функции нет в списке, импортируйте её код вручную.",
+				Text = isRussian ? "* Если нужной функции нет в списке, импортируйте её код вручную." : "* If the required function is not listed, import its code manually.",
 				Location = new Point(20, lstFunctions.Bottom + 15),
 				AutoSize = true,
 				MaximumSize = new Size(460, 0),
@@ -873,7 +875,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			btnOk = new Button
 			{
-				Text = "Выбрать",
+				Text = isRussian ? "Выбрать" : "Import",
 				Location = new Point(275, buttonsY),
 				Size = new Size(100, 35),
 				BackColor = accentColor,
@@ -895,7 +897,7 @@ namespace FlowchartGenerator.UX_MENU_Forms
 
 			btnCancel = new Button
 			{
-				Text = "Отмена",
+				Text = isRussian ? "Отмена" : "Cancel",
 				Location = new Point(380, buttonsY),
 				Size = new Size(100, 35),
 				BackColor = isDarkTheme ? Color.FromArgb(60, 60, 60) : Color.FromArgb(200, 200, 200),

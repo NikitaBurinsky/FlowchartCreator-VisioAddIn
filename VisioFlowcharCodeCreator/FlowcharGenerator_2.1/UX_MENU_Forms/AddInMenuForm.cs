@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Linq;
+using System.Text.RegularExpressions;
 using FlowchartGenerator.UX_MENU_Forms;
 
 namespace FlowchartGenerator.MENU
@@ -12,16 +14,19 @@ namespace FlowchartGenerator.MENU
 		public EMenuResult MenuResult { get; private set; } = EMenuResult.Exit;
 
 		//R
-        string _filepath;
+		string _filepath;
 		string _commandsJsonPath;
         SettingsSystem _settings;
 		private CheckBox chkWordWrap;
 		private CheckBox chkAutoCloseBrackets;
 		private ComboBox cmbTheme;
 		private ComboBox cmbFont;
+		private ComboBox cmbLanguage;
+		private ComboBox cmbHistory;
 		private Button btnImportFile;
 		private Label lblTheme;
 		private Label lblFont;
+		private Label lblLanguage;
 		private Label lblTip;
 
         public AddInMenuForm(string filepath_, string commandspath_, SettingsSystem settings)
@@ -35,9 +40,22 @@ namespace FlowchartGenerator.MENU
         private void AddInMenuForm_Load(object sender, EventArgs e)
 		{
 			InitializeCustomSettingsControls();
+			
+			// Detect theme automatically
 			bool isOfficeDark = IsOfficeThemeDark();
 			cmbTheme.SelectedIndex = isOfficeDark ? 1 : 0;
 			ApplyTheme(isOfficeDark);
+
+			// Determine initial language
+			string initialLang = _settings.Language;
+			if (string.IsNullOrEmpty(initialLang) || initialLang == "Auto")
+			{
+				bool isSystemRu = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLower() == "ru";
+				initialLang = isSystemRu ? "ru" : "en";
+				_settings.Language = initialLang;
+			}
+			cmbLanguage.SelectedIndex = initialLang == "ru" ? 0 : 1; // triggers SelectedIndexChanged -> ApplyLanguage
+			LoadHistoryList();
 		}
 
 		private bool IsOfficeThemeDark()
@@ -54,14 +72,32 @@ namespace FlowchartGenerator.MENU
 							// 3 = Dark Gray, 4 = Black
 							if (themeVal == 3 || themeVal == 4)
 								return true;
+							if (themeVal == 0 || themeVal == 5)
+								return false; // Colorful or White
+							// 6 = Use System Setting (since newer Office versions)
 						}
 					}
 				}
 			}
-			catch
+			catch { }
+
+			// Fallback: check Windows App theme
+			try
 			{
-				// Fallback
+				using (var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"))
+				{
+					if (key != null)
+					{
+						object val = key.GetValue("AppsUseLightTheme");
+						if (val != null && int.TryParse(val.ToString(), out int lightThemeVal))
+						{
+							return lightThemeVal == 0; // 0 means dark theme
+						}
+					}
+				}
 			}
+			catch { }
+
 			return false;
 		}
 
@@ -117,6 +153,25 @@ namespace FlowchartGenerator.MENU
 			};
 			this.Controls.Add(cmbFont);
 
+			// Language label
+			lblLanguage = new Label();
+			lblLanguage.Text = "Язык интерфейса:";
+			lblLanguage.Size = new System.Drawing.Size(120, 20);
+			this.Controls.Add(lblLanguage);
+
+			// Language combo
+			cmbLanguage = new ComboBox();
+			cmbLanguage.DropDownStyle = ComboBoxStyle.DropDownList;
+			cmbLanguage.Items.AddRange(new object[] { "Русский", "English" });
+			cmbLanguage.SelectedIndex = 0; // Russian
+			cmbLanguage.Size = new System.Drawing.Size(120, 25);
+			cmbLanguage.SelectedIndexChanged += (s, e) => {
+				bool isRu = cmbLanguage.SelectedIndex == 0;
+				_settings.Language = isRu ? "ru" : "en";
+				ApplyLanguage(isRu);
+			};
+			this.Controls.Add(cmbLanguage);
+
 			// Rename Commands file open button
 			Btn_CommandsFileOpen.Text = "Настройка команд...";
 
@@ -146,6 +201,15 @@ namespace FlowchartGenerator.MENU
 			};
 			this.Controls.Add(btnImportFile);
 
+			// Code History ComboBox
+			cmbHistory = new ComboBox();
+			cmbHistory.DropDownStyle = ComboBoxStyle.DropDownList;
+			cmbHistory.Location = new System.Drawing.Point(870, 8);
+			cmbHistory.Size = new System.Drawing.Size(300, 25);
+			cmbHistory.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+			cmbHistory.SelectedIndexChanged += CmbHistory_SelectedIndexChanged;
+			this.Controls.Add(cmbHistory);
+
 			// Help/Tip Label
 			lblTip = new Label();
 			lblTip.Text = "💡 Подсказка: Если авто-импорт файла не определил нужные функции, вы можете просто скопировать и вставить их код вручную.";
@@ -170,7 +234,11 @@ namespace FlowchartGenerator.MENU
 
 			lblFont.Location = new System.Drawing.Point(22, currentY + 3);
 			cmbFont.Location = new System.Drawing.Point(160, currentY);
-			currentY = cmbFont.Bottom + 16;
+			currentY = cmbFont.Bottom + 12;
+
+			lblLanguage.Location = new System.Drawing.Point(22, currentY + 3);
+			cmbLanguage.Location = new System.Drawing.Point(160, currentY);
+			currentY = cmbLanguage.Bottom + 16;
 
 			lblTip.Location = new System.Drawing.Point(22, currentY);
 
@@ -216,13 +284,15 @@ namespace FlowchartGenerator.MENU
 
 			if (label2 != null)
 			{
-				SetupBeautifulHelpText(label2, isDark);
+				bool isRu = (cmbLanguage != null) ? cmbLanguage.SelectedIndex == 0 : true;
+				SetupBeautifulHelpText(label2, isDark, isRu);
 			}
 
 			if (label3 != null) label3.ForeColor = fgColor;
 			if (label4 != null) label4.ForeColor = fgColor;
 			if (lblTheme != null) lblTheme.ForeColor = fgColor;
 			if (lblFont != null) lblFont.ForeColor = fgColor;
+			if (lblLanguage != null) lblLanguage.ForeColor = fgColor;
 			if (lblTip != null) lblTip.ForeColor = isDark ? Color.FromArgb(170, 170, 170) : Color.FromArgb(100, 100, 100);
 
 			if (chkWordWrap != null) chkWordWrap.ForeColor = fgColor;
@@ -247,6 +317,16 @@ namespace FlowchartGenerator.MENU
 			{
 				cmbFont.BackColor = controlBgColor;
 				cmbFont.ForeColor = controlFgColor;
+			}
+			if (cmbLanguage != null)
+			{
+				cmbLanguage.BackColor = controlBgColor;
+				cmbLanguage.ForeColor = controlFgColor;
+			}
+			if (cmbHistory != null)
+			{
+				cmbHistory.BackColor = controlBgColor;
+				cmbHistory.ForeColor = controlFgColor;
 			}
 
 			ApplyButtonTheme(Generate_Btn, isDark, true);
@@ -275,7 +355,102 @@ namespace FlowchartGenerator.MENU
 			}
 		}
 
-		private void SetupBeautifulHelpText(RichTextBox rtb, bool isDark)
+		private void ApplyLanguage(bool isRu)
+		{
+			if (textBox != null)
+			{
+				textBox.IsRussianLanguage = isRu;
+			}
+
+			if (isRu)
+			{
+				this.Text = "Конструктор Блок-Схем Visio";
+				if (Generate_Btn != null) Generate_Btn.Text = "Сгенерировать";
+				if (Btn_Cancel != null) Btn_Cancel.Text = "Отмена";
+				if (Btn_CommandsFileOpen != null) Btn_CommandsFileOpen.Text = "Настройка команд...";
+				if (chkWordWrap != null) chkWordWrap.Text = "Перенос строк";
+				if (chkAutoCloseBrackets != null) chkAutoCloseBrackets.Text = "Автозакрытие скобок";
+				if (lblTheme != null) lblTheme.Text = "Тема окна:";
+				if (lblFont != null) lblFont.Text = "Шрифт кода:";
+				if (lblLanguage != null) lblLanguage.Text = "Язык интерфейса:";
+				if (btnImportFile != null) btnImportFile.Text = "Импортировать функции из файла...";
+				if (lblTip != null) lblTip.Text = "💡 Подсказка: Если авто-импорт файла не определил нужные функции, вы можете просто скопировать и вставить их код вручную.";
+				if (label3 != null) label3.Text = "Макс. кол-во однотипных блоков, объединяемых в один";
+				if (label4 != null) label4.Text = "Макс. длина текста в блоке (остальное будет обрезано). -1 — без ограничений";
+			}
+			else
+			{
+				this.Text = "Visio Flowchart Creator";
+				if (Generate_Btn != null) Generate_Btn.Text = "Generate";
+				if (Btn_Cancel != null) Btn_Cancel.Text = "Cancel";
+				if (Btn_CommandsFileOpen != null) Btn_CommandsFileOpen.Text = "Configure Commands...";
+				if (chkWordWrap != null) chkWordWrap.Text = "Word Wrap";
+				if (chkAutoCloseBrackets != null) chkAutoCloseBrackets.Text = "Auto-close Brackets";
+				if (lblTheme != null) lblTheme.Text = "Window Theme:";
+				if (lblFont != null) lblFont.Text = "Code Font:";
+				if (lblLanguage != null) lblLanguage.Text = "Interface Language:";
+				if (btnImportFile != null) btnImportFile.Text = "Import functions from file...";
+				if (lblTip != null) lblTip.Text = "💡 Tip: If auto-import didn't detect the functions, you can simply copy and paste your code manually.";
+				if (label3 != null) label3.Text = "Max number of similar type nodes to combine into one";
+				if (label4 != null) label4.Text = "Max number of characters per block (the rest will be cut off). -1 for unlimited";
+			}
+
+			if (cmbTheme != null)
+			{
+				int prevThemeIdx = cmbTheme.SelectedIndex;
+				cmbTheme.Items.Clear();
+				if (isRu)
+				{
+					cmbTheme.Items.AddRange(new object[] { "Светлая", "Темная" });
+				}
+				else
+				{
+					cmbTheme.Items.AddRange(new object[] { "Light", "Dark" });
+				}
+				if (prevThemeIdx >= 0 && prevThemeIdx < cmbTheme.Items.Count)
+				{
+					cmbTheme.SelectedIndex = prevThemeIdx;
+				}
+				else
+				{
+					cmbTheme.SelectedIndex = 0;
+				}
+			}
+
+			if (label3 != null && label4 != null && numericUpDown1 != null && numericUpDown2 != null)
+			{
+				int label4Height = Math.Max(30, label4.GetPreferredSize(new System.Drawing.Size(442, 0)).Height);
+				label4.Location = new System.Drawing.Point(20, numericUpDown2.Top - label4Height - 6);
+
+				int label3Height = Math.Max(18, label3.GetPreferredSize(new System.Drawing.Size(442, 0)).Height);
+				label3.Location = new System.Drawing.Point(20, numericUpDown1.Top - label3Height - 6);
+			}
+
+			if (label2 != null && cmbTheme != null)
+			{
+				SetupBeautifulHelpText(label2, cmbTheme.SelectedIndex == 1, isRu);
+			}
+
+			if (cmbHistory != null && cmbHistory.Items.Count > 0)
+			{
+				_isLoadingHistory = true;
+				try
+				{
+					string placeholderText = isRu ? "— История кода —" : "— Code History —";
+					cmbHistory.Items[0] = placeholderText;
+					if (cmbHistory.SelectedIndex == 0)
+					{
+						cmbHistory.Text = placeholderText;
+					}
+				}
+				finally
+				{
+					_isLoadingHistory = false;
+				}
+			}
+		}
+
+		private void SetupBeautifulHelpText(RichTextBox rtb, bool isDark, bool isRu)
 		{
 			rtb.Clear();
 			rtb.ReadOnly = true;
@@ -284,32 +459,58 @@ namespace FlowchartGenerator.MENU
 			rtb.ForeColor = isDark ? Color.FromArgb(220, 220, 220) : Color.FromArgb(50, 50, 50);
 			rtb.Font = new Font("Segoe UI", 9.5F);
 
-			AppendStyledText(rtb, "Flowchart Generator Add-In\n", new Font("Segoe UI", 12F, FontStyle.Bold), isDark ? Color.FromArgb(0, 150, 255) : Color.FromArgb(0, 102, 204));
-			AppendStyledText(rtb, "Creates a Visio flowchart from C/C++ source code.\n\n", new Font("Segoe UI", 9.5F, FontStyle.Italic), isDark ? Color.FromArgb(180, 180, 180) : Color.FromArgb(100, 100, 100));
+			if (isRu)
+			{
+				AppendStyledText(rtb, "Конструктор Блок-Схем Visio\n", new Font("Segoe UI", 12F, FontStyle.Bold), isDark ? Color.FromArgb(0, 150, 255) : Color.FromArgb(0, 102, 204));
+				AppendStyledText(rtb, "Создает блок-схему в Visio на основе исходного кода C/C++.\n\n", new Font("Segoe UI", 9.5F, FontStyle.Italic), isDark ? Color.FromArgb(180, 180, 180) : Color.FromArgb(100, 100, 100));
 
-			AppendStyledText(rtb, " ⚠  READ BEFORE USING! \n", new Font("Segoe UI", 10F, FontStyle.Bold), Color.FromArgb(220, 53, 69));
-			
-			AppendStyledText(rtb, "How to use:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
-			AppendStyledText(rtb, "1. Insert the C/C++ function code in the editor on the right.\n", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "2. Click ", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "Generate", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
-			AppendStyledText(rtb, " to build the flowchart in Visio.\n\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, " ⚠  ПРОЧТИТЕ ПЕРЕД ИСПОЛЬЗОВАНИЕМ! \n", new Font("Segoe UI", 10F, FontStyle.Bold), Color.FromArgb(220, 53, 69));
 
-			AppendStyledText(rtb, "Rules & Syntax Guidelines:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
-			AppendStyledText(rtb, "• Each instruction/command must start on a new line.\n", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "• Compound block commands (like loops/conditionals) must use opening and closing braces { }.\n", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "  For example, use ", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "while(true) { }", new Font("Consolas", 9.5F), isDark ? Color.FromArgb(206, 145, 120) : Color.FromArgb(163, 21, 21));
-			AppendStyledText(rtb, " instead of while(true);\n\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "Как использовать:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
+				AppendStyledText(rtb, "1. Вставьте код C/C++ функции в редактор справа.\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "2. Нажмите ", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "Сгенерировать", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
+				AppendStyledText(rtb, " для построения блок-схемы в Visio.\n\n", rtb.Font, rtb.ForeColor);
 
-			AppendStyledText(rtb, "Commands configuration:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
-			AppendStyledText(rtb, "• Recognized commands are listed in the ", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "Commands.xlsx", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
-			AppendStyledText(rtb, " file.\n", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "• Unrecognized commands are classified as standard Process or Subprocess blocks.\n", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "• To add custom keywords, click ", rtb.Font, rtb.ForeColor);
-			AppendStyledText(rtb, "Настройка команд...", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
-			AppendStyledText(rtb, " and define the type (OUT, STARTEND, IN).\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "Правила и синтаксис:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
+				AppendStyledText(rtb, "• Каждая инструкция/команда должна начинаться с новой строки.\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "• Составные блоки (циклы, условия) обязательно должны использовать фигурные скобки { }.\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "  Например, пишите ", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "while(true) { }", new Font("Consolas", 9.5F), isDark ? Color.FromArgb(206, 145, 120) : Color.FromArgb(163, 21, 21));
+				AppendStyledText(rtb, " вместо while(true);\n\n", rtb.Font, rtb.ForeColor);
+
+				AppendStyledText(rtb, "Настройка ключевых слов:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
+				AppendStyledText(rtb, "• Нажмите ", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "Настройка команд...", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
+				AppendStyledText(rtb, " для сопоставления функций конкретным блокам в Visio (ввод, вывод, процесс, предопределенный процесс).\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "• Все нераспознанные функции будут автоматически отрисованы как обычные блоки процессов.\n", rtb.Font, rtb.ForeColor);
+			}
+			else
+			{
+				AppendStyledText(rtb, "Visio Flowchart Creator\n", new Font("Segoe UI", 12F, FontStyle.Bold), isDark ? Color.FromArgb(0, 150, 255) : Color.FromArgb(0, 102, 204));
+				AppendStyledText(rtb, "Creates a Visio flowchart from C/C++ source code.\n\n", new Font("Segoe UI", 9.5F, FontStyle.Italic), isDark ? Color.FromArgb(180, 180, 180) : Color.FromArgb(100, 100, 100));
+
+				AppendStyledText(rtb, " ⚠  READ BEFORE USING! \n", new Font("Segoe UI", 10F, FontStyle.Bold), Color.FromArgb(220, 53, 69));
+
+				AppendStyledText(rtb, "How to use:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
+				AppendStyledText(rtb, "1. Insert your C/C++ function code in the editor on the right.\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "2. Click ", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "Generate", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
+				AppendStyledText(rtb, " to build the flowchart in Visio.\n\n", rtb.Font, rtb.ForeColor);
+
+				AppendStyledText(rtb, "Rules & Syntax Guidelines:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
+				AppendStyledText(rtb, "• Each instruction/command must start on a new line.\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "• Compound blocks (loops, conditionals) must use opening and closing curly braces { }.\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "  For example, write ", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "while(true) { }", new Font("Consolas", 9.5F), isDark ? Color.FromArgb(206, 145, 120) : Color.FromArgb(163, 21, 21));
+				AppendStyledText(rtb, " instead of while(true);\n\n", rtb.Font, rtb.ForeColor);
+
+				AppendStyledText(rtb, "Commands configuration:\n", new Font("Segoe UI", 10F, FontStyle.Bold), isDark ? Color.White : Color.Black);
+				AppendStyledText(rtb, "• Click ", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "Configure Commands...", new Font("Segoe UI", 9.5F, FontStyle.Bold), rtb.ForeColor);
+				AppendStyledText(rtb, " to map custom functions to specific Visio block types (input, output, process, subprocess).\n", rtb.Font, rtb.ForeColor);
+				AppendStyledText(rtb, "• Unrecognized commands are automatically classified as standard Process blocks.\n", rtb.Font, rtb.ForeColor);
+			}
 		}
 
 		private void AppendStyledText(RichTextBox rtb, string text, Font font, Color color)
@@ -328,13 +529,19 @@ namespace FlowchartGenerator.MENU
 
 		private void Btn_Generate_Click(object sender, EventArgs e)
 		{
+			bool isRu = cmbLanguage.SelectedIndex == 0;
 			// Simple brace validation check
 			string braceWarning = StaticCodeValidator.ValidateBraces(textBox.Text);
 			if (braceWarning != null)
 			{
+				string msg = isRu ? 
+					braceWarning + "\n\nСхема может построиться некорректно или произойдет ошибка. Вы хотите продолжить генерацию?" :
+					braceWarning + "\n\nThe flowchart might be generated incorrectly or an error might occur. Do you want to proceed?";
+				string title = isRu ? "Предупреждение валидатора" : "Validator Warning";
+
 				DialogResult result = MessageBox.Show(
-					braceWarning + "\n\nСхема может построиться некорректно или произойдет ошибка. Вы хотите продолжить генерацию?",
-					"Предупреждение валидатора",
+					msg,
+					title,
 					MessageBoxButtons.YesNo,
 					MessageBoxIcon.Warning
 				);
@@ -344,6 +551,8 @@ namespace FlowchartGenerator.MENU
 				}
 			}
 
+			SaveCurrentToHistory();
+
 			MenuResult = EMenuResult.GenerateFromBuffer;
 			try
 			{
@@ -351,7 +560,9 @@ namespace FlowchartGenerator.MENU
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Не удалось записать буферный файл:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				string errorMsg = isRu ? "Не удалось записать буферный файл:\n" : "Failed to write temporary file:\n";
+				string title = isRu ? "Ошибка" : "Error";
+				MessageBox.Show(errorMsg + ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			Close();
@@ -359,7 +570,8 @@ namespace FlowchartGenerator.MENU
 
 		private void Btn_OpenCommandsFile_Click(object sender, EventArgs e)
 		{
-			using (var editor = new CommandsEditorForm(_commandsJsonPath, textBox.Theme == CodeEditor.ColorTheme.Dark))
+			bool isRu = cmbLanguage.SelectedIndex == 0;
+			using (var editor = new CommandsEditorForm(_commandsJsonPath, textBox.Theme == CodeEditor.ColorTheme.Dark, isRu))
 			{
 				editor.ShowDialog(this);
 			}
@@ -388,6 +600,186 @@ namespace FlowchartGenerator.MENU
 			{
 				_settings.FigureTextMaxSize = 1;
 				numericUpDown2.Value = 1;
+			}
+		}
+
+		private class HistoryItem
+		{
+			public string FilePath { get; set; }
+			public string DisplayText { get; set; }
+			public override string ToString() => DisplayText;
+		}
+
+		private bool _isLoadingHistory = false;
+
+		private void LoadHistoryList(string selectFilePath = null)
+		{
+			if (cmbHistory == null) return;
+			if (_isLoadingHistory) return;
+			_isLoadingHistory = true;
+
+			try
+			{
+				cmbHistory.Items.Clear();
+
+				bool isRu = cmbLanguage.SelectedIndex == 0;
+				string placeholderText = isRu ? "— История кода —" : "— Code History —";
+				cmbHistory.Items.Add(placeholderText);
+
+				string historyDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FlowchartCreatorAddIn", "History");
+				if (Directory.Exists(historyDir))
+				{
+					var files = Directory.GetFiles(historyDir, "snippet_*.txt")
+										 .Select(f => new FileInfo(f))
+										 .OrderByDescending(f => f.LastWriteTime)
+										 .Take(10)
+										 .ToList();
+
+					foreach (var file in files)
+					{
+						try
+						{
+							using (var reader = new StreamReader(file.FullName))
+							{
+								string title = reader.ReadLine() ?? "Untitled";
+								string timeStr = file.LastWriteTime.ToString("g");
+								cmbHistory.Items.Add(new HistoryItem
+								{
+									FilePath = file.FullName,
+									DisplayText = $"{title} ({timeStr})"
+								});
+							}
+						}
+						catch { }
+					}
+				}
+
+				int indexToSelect = 0;
+				if (selectFilePath != null)
+				{
+					for (int i = 1; i < cmbHistory.Items.Count; i++)
+					{
+						if (cmbHistory.Items[i] is HistoryItem item && item.FilePath == selectFilePath)
+						{
+							indexToSelect = i;
+							break;
+						}
+					}
+				}
+				cmbHistory.SelectedIndex = indexToSelect;
+			}
+			finally
+			{
+				_isLoadingHistory = false;
+			}
+		}
+
+		private bool SaveCurrentToHistory()
+		{
+			string currentText = textBox.Text;
+			if (string.IsNullOrWhiteSpace(currentText)) return false;
+
+			string historyDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FlowchartCreatorAddIn", "History");
+			if (!Directory.Exists(historyDir))
+			{
+				try { Directory.CreateDirectory(historyDir); } catch { return false; }
+			}
+
+			var files = Directory.GetFiles(historyDir, "snippet_*.txt")
+								 .Select(f => new FileInfo(f))
+								 .OrderByDescending(f => f.LastWriteTime)
+								 .ToList();
+
+			if (files.Count > 0)
+			{
+				try
+				{
+					string lastFileContent = File.ReadAllText(files[0].FullName);
+					int firstNewline = lastFileContent.IndexOf('\n');
+					string lastCode = firstNewline != -1 ? lastFileContent.Substring(firstNewline + 1) : lastFileContent;
+					if (lastCode.Trim() == currentText.Trim())
+					{
+						return false; // Duplicate
+					}
+				}
+				catch { }
+			}
+
+			string title = ExtractFunctionName(currentText);
+			string fileName = $"snippet_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+			string filePath = Path.Combine(historyDir, fileName);
+			try
+			{
+				File.WriteAllText(filePath, title + "\n" + currentText);
+
+				var allFiles = Directory.GetFiles(historyDir, "snippet_*.txt")
+									 .Select(f => new FileInfo(f))
+									 .OrderByDescending(f => f.LastWriteTime)
+									 .ToList();
+				if (allFiles.Count > 10)
+				{
+					for (int i = 10; i < allFiles.Count; i++)
+					{
+						try { allFiles[i].Delete(); } catch { }
+					}
+				}
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		private string ExtractFunctionName(string code)
+		{
+			if (string.IsNullOrWhiteSpace(code)) return "Empty Snippet";
+
+			var match = Regex.Match(code, @"\b(?:[a-zA-Z_]\w*(?:\s+|\s*\*+\s*))+([a-zA-Z_]\w*)\s*\([^)]*\)");
+			if (match.Success)
+			{
+				return match.Value.Trim();
+			}
+
+			var firstLine = code.Split('\n').Select(l => l.Trim()).FirstOrDefault(l => !string.IsNullOrEmpty(l));
+			if (firstLine != null)
+			{
+				if (firstLine.Length > 40) return firstLine.Substring(0, 37) + "...";
+				return firstLine;
+			}
+
+			return "Untitled";
+		}
+
+		private void CmbHistory_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (_isLoadingHistory) return;
+			if (cmbHistory.SelectedIndex <= 0) return;
+
+			if (!(cmbHistory.SelectedItem is HistoryItem selectedItem)) return;
+
+			bool saved = SaveCurrentToHistory();
+
+			try
+			{
+				string content = File.ReadAllText(selectedItem.FilePath);
+				int firstNewline = content.IndexOf('\n');
+				string code = firstNewline != -1 ? content.Substring(firstNewline + 1) : content;
+
+				textBox.Text = code;
+			}
+			catch (Exception ex)
+			{
+				bool isRu = cmbLanguage.SelectedIndex == 0;
+				string errTitle = isRu ? "Ошибка загрузки" : "Load Error";
+				string errMsg = isRu ? "Не удалось загрузить историю:" : "Failed to load history:";
+				MessageBox.Show(errMsg + "\n" + ex.Message, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			if (saved)
+			{
+				LoadHistoryList(selectedItem.FilePath);
 			}
 		}
 	}
